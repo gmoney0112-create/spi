@@ -282,7 +282,7 @@ export default function StarsPrivateInvestigations() {
             <h1 className="text-4xl font-bold text-center mb-12" style={{ color: '#001F3F' }}>About Our Founder</h1>
             <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
               <div className="rounded-lg overflow-hidden shadow-lg" style={{ height: '500px' }}>
-                <img src="https://i.imgur.com/4DjhANg.png" alt="Tony Trevino - Founder & CEO" className="w-full h-full object-cover" />
+                <img src="/spi-logo.png" alt="SPI Security - Stars Private Investigations" className="w-full h-full object-contain bg-gray-900" />
               </div>
               <div>
                 <h2 className="text-3xl font-bold mb-6" style={{ color: '#B8860B' }}>Tony Trevino</h2>
