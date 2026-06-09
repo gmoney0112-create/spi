@@ -28,10 +28,15 @@ export default function StarsPrivateInvestigations() {
   const [careerStatus, setCareerStatus]         = useState('');
 
   const services = [
-    { id: 'guards',     title: 'Security Guards',        desc: 'Licensed, professional security officers for your facility' },
-    { id: 'campus',     title: 'Campus & School Security', desc: 'Specialized protection for educational institutions' },
-    { id: 'protection', title: 'Protection Services',    desc: 'Customized security solutions for businesses' },
-    { id: 'training',   title: 'Training & Classes',     desc: 'Professional certifications and security training' }
+    { id: 'guards',      title: 'Security Guards',        desc: 'Licensed, professional security officers for your facility' },
+    { id: 'campus',      title: 'Campus & School Security', desc: 'Specialized protection for educational institutions' },
+    { id: 'protection',  title: 'Protection Services',    desc: 'Customized security solutions for businesses' },
+    { id: 'training',    title: 'Training & Classes',     desc: 'Professional certifications and security training' },
+    { id: 'extradition', title: 'Extradition Services',   desc: 'Professional fugitive transport and extradition assistance' },
+    { id: 'pi',          title: 'Private Investigation',  desc: 'Discreet, thorough investigations for individuals, businesses, and attorneys' },
+    { id: 'event',       title: 'Event Security',         desc: 'Reliable security coverage for private and public events of all sizes' },
+    { id: 'monitoring',  title: 'Personnel Monitoring',   desc: 'Surveillance and monitoring services for workforce accountability' },
+    { id: 'process',     title: 'Process Serving',        desc: 'Fast, reliable legal document delivery throughout Texas' }
   ];
 
   const trainings = [
@@ -237,10 +242,18 @@ export default function StarsPrivateInvestigations() {
               <input type="tel" name="phone" placeholder="Phone Number" value={careerForm.phone} onChange={handleCareerFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black" />
               <select name="position" value={careerForm.position} onChange={handleCareerFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black">
                 <option value="">Position of Interest *</option>
-                <option value="security-officer">Security Officer</option>
-                <option value="campus-security">Campus / School Security</option>
-                <option value="investigator">Private Investigator</option>
-                <option value="training-instructor">Training Instructor</option>
+                <optgroup label="Security">
+                  <option value="security-officer">Security Officer</option>
+                  <option value="campus-security">Campus / School Security</option>
+                  <option value="event-security">Event Security</option>
+                  <option value="investigator">Private Investigator</option>
+                  <option value="process-server">Process Server</option>
+                  <option value="training-instructor">Training Instructor</option>
+                </optgroup>
+                <optgroup label="Administrative">
+                  <option value="executive">Executive</option>
+                  <option value="records-clerk">Records Clerk</option>
+                </optgroup>
                 <option value="other">Other</option>
               </select>
               <select name="experience" value={careerForm.experience} onChange={handleCareerFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black">
@@ -548,6 +561,11 @@ export default function StarsPrivateInvestigations() {
                       <option value="guards">Security Guards</option>
                       <option value="campus">Campus &amp; School Security</option>
                       <option value="protection">Protection Services</option>
+                      <option value="extradition">Extradition Services</option>
+                      <option value="pi">Private Investigation</option>
+                      <option value="event">Event Security</option>
+                      <option value="monitoring">Personnel Monitoring</option>
+                      <option value="process">Process Serving</option>
                       <option value="training">Training &amp; Classes</option>
                     </select>
                     <textarea name="message" placeholder="Tell us about your security needs..." value={formData.message} onChange={handleFormChange} rows="4" className="w-full px-4 py-2 rounded text-black" />
