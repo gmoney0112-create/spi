@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, MapPin, Clock, Shield, BookOpen, Calendar, Star } from 'lucide-react';
+import { Menu, X, Phone, MapPin, Clock, Shield, BookOpen, Star } from 'lucide-react';
 
 export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -402,9 +402,9 @@ export default function StarsPrivateInvestigations() {
               <p className="mt-2 text-sm">San Antonio, Texas | Licensed & Bonded #C00444101</p>
               <p className="mt-2 text-sm">www.starsprivatei.com</p>
               <div className="mt-4 flex justify-center gap-6">
-                <a href="#" className="hover:text-white transition">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition">Terms of Service</a>
-                <a href="#" className="hover:text-white transition">Certifications</a>
+                <button className="hover:text-white transition">Privacy Policy</button>
+                <button className="hover:text-white transition">Terms of Service</button>
+                <button className="hover:text-white transition">Certifications</button>
               </div>
             </div>
           </footer>
