@@ -105,12 +105,12 @@ export default function StarsPrivateInvestigations() {
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
               {/* Image Placeholder */}
-              <div className="bg-gray-300 rounded-lg overflow-hidden shadow-lg" style={{ height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="text-center text-gray-600">
-                  <p className="text-lg font-semibold">Tony Trevino</p>
-                  <p className="text-sm">Founder • CEO • Veteran</p>
-                  <p className="text-xs mt-4">[Add your photo here]</p>
-                </div>
+              <div className="rounded-lg overflow-hidden shadow-lg" style={{ height: '500px' }}>
+                <img
+                  src="https://i.imgur.com/B6lBXOC.jpeg"
+                  alt="Tony Trevino - Founder & CEO"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Biography */}
