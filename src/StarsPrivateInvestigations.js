@@ -5,6 +5,7 @@ export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
+  const [careerForm, setCareerForm] = useState({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
 
   const services = [
     { id: 'guards', title: 'Security Guards', desc: 'Licensed, professional security officers for your facility' },
@@ -37,6 +38,19 @@ export default function StarsPrivateInvestigations() {
 
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCareerFormChange = (e) => {
+    setCareerForm({ ...careerForm, [e.target.name]: e.target.value });
+  };
+
+  const handleCareerFormSubmit = () => {
+    if (careerForm.name && careerForm.email && careerForm.position) {
+      alert(`Thank you ${careerForm.name}! Your application has been received. We will be in touch at ${careerForm.email}.`);
+      setCareerForm({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
+    } else {
+      alert('Please fill in all required fields');
+    }
   };
 
   const handleFormSubmit = () => {
@@ -92,6 +106,101 @@ export default function StarsPrivateInvestigations() {
           </div>
         )}
       </header>
+
+      {/* CAREERS PAGE */}
+      {currentPage === 'careers' && (
+        <section className="py-16 px-4 bg-white">
+          <div className="max-w-3xl mx-auto">
+            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+              ← Back to Home
+            </button>
+
+            <h1 className="text-4xl font-bold text-center mb-4" style={{ color: '#001F3F' }}>Join Our Team</h1>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Stars Private Investigations is always looking for dedicated, professional individuals to grow with us. Fill out the form below and we'll be in touch.
+            </p>
+
+            <div className="bg-gray-50 p-8 rounded-lg border-l-4 mb-10" style={{ borderColor: '#B8860B' }}>
+              <h2 className="text-xl font-bold mb-2" style={{ color: '#001F3F' }}>What We Look For</h2>
+              <ul className="text-gray-700 space-y-2 list-disc list-inside">
+                <li>Strong integrity and professional conduct</li>
+                <li>Military, law enforcement, or security background preferred</li>
+                <li>Ability to obtain a Texas security license (we can assist)</li>
+                <li>Reliable, punctual, and team-oriented</li>
+                <li>CPR/First Aid certification (or willingness to obtain)</li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold mb-6" style={{ color: '#001F3F' }}>Application Form</h2>
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name *"
+                value={careerForm.name}
+                onChange={handleCareerFormChange}
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address *"
+                value={careerForm.email}
+                onChange={handleCareerFormChange}
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={careerForm.phone}
+                onChange={handleCareerFormChange}
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              />
+              <select
+                name="position"
+                value={careerForm.position}
+                onChange={handleCareerFormChange}
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              >
+                <option value="">Position of Interest *</option>
+                <option value="security-officer">Security Officer</option>
+                <option value="campus-security">Campus / School Security</option>
+                <option value="investigator">Private Investigator</option>
+                <option value="training-instructor">Training Instructor</option>
+                <option value="other">Other</option>
+              </select>
+              <select
+                name="experience"
+                value={careerForm.experience}
+                onChange={handleCareerFormChange}
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              >
+                <option value="">Years of Experience</option>
+                <option value="0-1">Less than 1 year</option>
+                <option value="1-3">1–3 years</option>
+                <option value="3-5">3–5 years</option>
+                <option value="5+">5+ years</option>
+              </select>
+              <textarea
+                name="message"
+                placeholder="Tell us about your background, certifications, and why you want to join Stars..."
+                value={careerForm.message}
+                onChange={handleCareerFormChange}
+                rows="5"
+                className="w-full px-4 py-3 rounded border border-gray-300 text-black focus:outline-none focus:border-yellow-600"
+              />
+              <button
+                onClick={handleCareerFormSubmit}
+                className="w-full py-3 rounded-lg font-semibold text-white transition"
+                style={{ backgroundColor: '#B8860B' }}
+              >
+                Submit Application
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ABOUT PAGE */}
       {currentPage === 'about' && (
@@ -405,6 +514,7 @@ export default function StarsPrivateInvestigations() {
                 <button className="hover:text-white transition">Privacy Policy</button>
                 <button className="hover:text-white transition">Terms of Service</button>
                 <button className="hover:text-white transition">Certifications</button>
+                <button onClick={() => setCurrentPage('careers')} className="hover:text-white transition">Careers</button>
               </div>
             </div>
           </footer>
