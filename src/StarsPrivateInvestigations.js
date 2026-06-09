@@ -48,7 +48,7 @@ export default function StarsPrivateInvestigations() {
     'AXON Training',
     'TASER Training',
     'Level III & IV Training',
-    'Firearms Training',
+    'Firearms Training & Concealed Carry License (LTC)',
     'Active Shooter Training',
     'NRA Civilian Training',
     'NRA LEO (Law Enforcement) Training'
