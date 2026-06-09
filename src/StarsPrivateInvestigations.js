@@ -107,7 +107,7 @@ export default function StarsPrivateInvestigations() {
               {/* Image Placeholder */}
               <div className="rounded-lg overflow-hidden shadow-lg" style={{ height: '500px' }}>
                 <img
-                  src="https://i.imgur.com/B6lBXOC.jpeg"
+                  src="https://i.imgur.com/4DjhANg.png"
                   alt="Tony Trevino - Founder & CEO"
                   className="w-full h-full object-cover"
                 />
