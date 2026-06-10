@@ -351,6 +351,20 @@ export default function StarsPrivateInvestigations() {
       {currentPage === '21angels' && (
         <div className="w-full">
 
+          {/* Video */}
+          <section className="py-8 px-4 bg-white">
+            <div className="max-w-5xl mx-auto rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://drive.google.com/file/d/16oa5OtxOuESxU1j9YqbrBg-Ihba7tkNc/preview"
+                width="100%"
+                height="500"
+                allow="autoplay"
+                allowFullScreen
+                title="21 Angels Strong Video"
+              />
+            </div>
+          </section>
+
           {/* Hero */}
           <section className="text-white py-24 px-4 text-center" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 50%, #1a0a2e 100%)' }}>
             <div className="max-w-4xl mx-auto">
