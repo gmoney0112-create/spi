@@ -15,7 +15,8 @@ const LinkedinIcon = () => (
 const CONTACT_FORM_ID = 'REPLACE_WITH_CONTACT_FORM_ID';
 const CAREER_FORM_ID  = 'REPLACE_WITH_CAREER_FORM_ID';
 
-// Replace with your Calendly link after setting up at calendly.com
+// Replace with your Stripe donation link
+const STRIPE_DONATE_URL = 'https://donate.stripe.com/REPLACE_WITH_YOUR_LINK';
 const CALENDLY_URL = 'https://calendly.com/REPLACE_WITH_YOUR_LINK';
 
 export default function StarsPrivateInvestigations() {
@@ -172,6 +173,7 @@ export default function StarsPrivateInvestigations() {
             <button onClick={() => scrollToSection('training')} className="hover:text-yellow-400 transition">Training</button>
             <button onClick={() => setCurrentPage('about')} className="hover:text-yellow-400 transition">About</button>
             <button onClick={() => scrollToSection('contact')} className="hover:text-yellow-400 transition">Contact</button>
+            <button onClick={() => setCurrentPage('21angels')} className="px-3 py-1 rounded font-semibold transition text-white" style={{ backgroundColor: '#7B2D8B' }}>21 Angels</button>
           </nav>
 
           <a href={`tel:2106379061`} className="hidden md:flex items-center gap-2 px-4 py-2 rounded" style={{ backgroundColor: '#B8860B' }}>
@@ -190,6 +192,7 @@ export default function StarsPrivateInvestigations() {
             <button onClick={() => scrollToSection('training')} className="block w-full text-left hover:text-yellow-400">Training</button>
             <button onClick={() => { setCurrentPage('about'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-yellow-400">About</button>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left hover:text-yellow-400">Contact</button>
+            <button onClick={() => { setCurrentPage('21angels'); setMobileMenuOpen(false); }} className="block w-full text-left font-semibold" style={{ color: '#c084d4' }}>21 Angels</button>
             <a href="tel:2106379061" className="block w-full text-left hover:text-yellow-400 font-semibold" style={{ color: '#B8860B' }}>(210) 637-9061</a>
           </div>
         )}
@@ -204,6 +207,178 @@ export default function StarsPrivateInvestigations() {
         <Phone className="w-5 h-5" />
         Call Now
       </a>
+
+      {/* 21 ANGELS PAGE */}
+      {currentPage === '21angels' && (
+        <div className="w-full">
+
+          {/* Hero */}
+          <section className="text-white py-24 px-4 text-center" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 50%, #1a0a2e 100%)' }}>
+            <div className="max-w-4xl mx-auto">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#7B2D8B' }}>
+                <Star className="w-12 h-12 text-white fill-white" />
+              </div>
+              <span className="px-4 py-1 rounded-full text-sm font-semibold mb-6 inline-block" style={{ backgroundColor: 'rgba(123,45,139,0.4)', border: '1px solid #c084d4', color: '#e0b0f0' }}>
+                501(c)(3) Nonprofit Organization
+              </span>
+              <h1 className="text-5xl md:text-6xl font-bold mt-4 mb-4" style={{ color: '#fff' }}>21 Angels Strong</h1>
+              <p className="text-2xl font-semibold mb-6" style={{ color: '#c084d4' }}>Protecting children. Supporting schools. Honoring the 21 angels.</p>
+              <p className="text-lg opacity-90 mb-10 leading-relaxed max-w-3xl mx-auto">
+                21 Angels Strong is a 501(c)(3) nonprofit founded in 2022 with one mission: to help protect school children, staff, and local communities through advanced training, preparedness, and security support. We provide veterans, reserve law enforcement officers, and qualified civilians with the training and equipment needed to help protect schools nationwide.
+              </p>
+              <a href={STRIPE_DONATE_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 rounded-lg font-bold text-lg text-white transition shadow-lg hover:opacity-90" style={{ backgroundColor: '#7B2D8B' }}>
+                Donate to 21 Angels
+              </a>
+            </div>
+          </section>
+
+          {/* Mission */}
+          <section className="py-16 px-4 bg-white">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#3b0764' }}>Our Mission</h2>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6 text-center">
+                21 Angels Strong was created to honor the lives of 21 angels and to give people a meaningful way to help make child safety a priority.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-10 text-center">
+                We believe <strong>preparation saves lives.</strong> Schools and communities need more than concern — they need trained, capable, immediate support before tragedy happens.
+              </p>
+              <div className="bg-purple-50 rounded-xl p-8 border-l-4" style={{ borderColor: '#7B2D8B' }}>
+                <h3 className="text-xl font-bold mb-4" style={{ color: '#3b0764' }}>Your donation helps provide:</h3>
+                <ul className="space-y-3 text-gray-700">
+                  {[
+                    'Advanced protection training for veterans, reserve law enforcement officers, and civilians',
+                    'Safety equipment for trained protectors serving school communities',
+                    'Preparedness support for schools and local organizations',
+                    'Community-focused prevention efforts designed to reduce response gaps'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style={{ backgroundColor: '#7B2D8B' }}>
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Why This Matters */}
+          <section className="py-16 px-4" style={{ backgroundColor: '#f5f0fa' }}>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#3b0764' }}>Why This Matters</h2>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Across the country, schools and places of worship continue to face serious security threats. The data shows that casualties are often driven by attacker free-fire time, crowd exposure, and how quickly an incident is interrupted.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Security presence alone is not enough. Effective protection requires training, preparation, coordination, and the ability to respond immediately when seconds matter.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Research shows that many active-shooter incidents end before police arrive — making prevention, access control, communication, training, and immediate intervention critical parts of any safety strategy.
+              </p>
+            </div>
+          </section>
+
+          {/* Impact Statistics */}
+          <section className="py-16 px-4 text-white" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 100%)' }}>
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">The Need Is Urgent</h2>
+              <p className="text-center opacity-80 mb-12 text-lg">The data makes the case for action</p>
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
+                {[
+                  { stat: '130', label: 'Major active-shooter incidents in the last 10 years' },
+                  { stat: '23', label: 'Involved some form of guard presence' },
+                  { stat: '9 / 130', label: 'Total major incidents involved formalized training' }
+                ].map((item, i) => (
+                  <div key={i} className="text-center p-6 rounded-xl" style={{ backgroundColor: 'rgba(123,45,139,0.3)', border: '1px solid #c084d4' }}>
+                    <p className="text-5xl font-bold mb-3" style={{ color: '#c084d4' }}>{item.stat}</p>
+                    <p className="opacity-90 text-sm leading-relaxed">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-xl p-8 text-center" style={{ backgroundColor: 'rgba(123,45,139,0.25)', border: '1px solid #c084d4' }}>
+                <h3 className="text-xl font-bold mb-4" style={{ color: '#e0b0f0' }}>2026 K–12 School Shootings Involving Injuries or Deaths</h3>
+                <div className="grid grid-cols-3 gap-6">
+                  {[
+                    { stat: '13', label: 'Incidents with injuries or deaths' },
+                    { stat: '9',  label: 'Killed' },
+                    { stat: '8',  label: 'Injured' }
+                  ].map((item, i) => (
+                    <div key={i}>
+                      <p className="text-4xl font-bold" style={{ color: '#c084d4' }}>{item.stat}</p>
+                      <p className="text-sm opacity-80 mt-1">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 opacity-75 text-sm">These numbers point to a clear gap: communities need more than passive security. They need trained, equipped, and prepared protectors.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Donation CTA */}
+          <section className="py-16 px-4 bg-white">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-4" style={{ color: '#3b0764' }}>Help Us Protect What Matters Most</h2>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                Every donation helps 21 Angels Strong expand training, provide equipment, and support school safety efforts across the country.
+              </p>
+              <p className="text-gray-700 text-lg leading-relaxed mb-10">
+                Your gift can help place more trained protectors where they are needed most — near children, staff, and communities before tragedy strikes.
+              </p>
+              <a href={STRIPE_DONATE_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-10 py-4 rounded-lg font-bold text-lg text-white transition shadow-lg hover:opacity-90 mb-4" style={{ backgroundColor: '#7B2D8B' }}>
+                Donate Securely Through Stripe
+              </a>
+              <p className="text-gray-500 text-sm mt-3">21 Angels Strong is a 501(c)(3) nonprofit. Donations may be tax-deductible as allowed by law.</p>
+            </div>
+          </section>
+
+          {/* Why Donate / Trust */}
+          <section className="py-16 px-4" style={{ backgroundColor: '#f5f0fa' }}>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-12" style={{ color: '#3b0764' }}>Why Donate?</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { title: 'Prevention Before Tragedy',   desc: 'We focus on building readiness before an incident occurs, not just responding after.' },
+                  { title: 'Training Before Response',    desc: 'Equipping protectors with the skills they need to act confidently and effectively.' },
+                  { title: 'Preparedness Before Panic',   desc: 'Communities with trained, prepared individuals respond faster and more effectively.' },
+                  { title: 'Protection for Children',     desc: 'Every effort is focused on the safety of children, school staff, and local communities.' }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white p-6 rounded-xl shadow-sm border-l-4" style={{ borderColor: '#7B2D8B' }}>
+                    <h3 className="font-bold text-lg mb-2" style={{ color: '#3b0764' }}>{item.title}</h3>
+                    <p className="text-gray-600">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Final CTA */}
+          <section className="py-20 px-4 text-white text-center" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 100%)' }}>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold mb-4">Stand With 21 Angels Strong</h2>
+              <p className="text-xl opacity-90 mb-4" style={{ color: '#c084d4' }}>Honor the 21 angels by helping protect the next generation.</p>
+              <p className="text-lg opacity-80 mb-10">Your donation helps turn concern into action.</p>
+              <a href={STRIPE_DONATE_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-4 rounded-lg font-bold text-lg text-white transition shadow-lg hover:opacity-90 mb-6" style={{ backgroundColor: '#7B2D8B' }}>
+                Make a Donation Today
+              </a>
+              <div className="mt-6">
+                <button onClick={() => setCurrentPage('home')} className="text-purple-300 hover:text-white underline text-sm transition">
+                  ← Return to Stars Private Investigations
+                </button>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="py-8 px-4 text-gray-400 text-center" style={{ backgroundColor: '#0a0014' }}>
+            <p className="text-sm">&copy; {new Date().getFullYear()} 21 Angels Strong. All rights reserved.</p>
+            <p className="text-xs mt-1 opacity-60">501(c)(3) Nonprofit Organization | Donations may be tax-deductible as allowed by law.</p>
+            <button onClick={() => setCurrentPage('home')} className="mt-3 text-xs hover:text-white underline transition">
+              starsprivatei.com
+            </button>
+          </footer>
+        </div>
+      )}
 
       {/* CAREERS PAGE */}
       {currentPage === 'careers' && (
