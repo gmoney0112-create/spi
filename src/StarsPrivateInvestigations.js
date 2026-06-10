@@ -157,14 +157,8 @@ export default function StarsPrivateInvestigations() {
       {/* Header/Navigation */}
       <header className="text-white sticky top-0 z-50" style={{ backgroundColor: '#001F3F' }}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 cursor-pointer">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#B8860B' }}>
-              <Star className="w-6 h-6 text-white fill-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold">STARS</h1>
-              <p className="text-xs" style={{ color: '#B8860B' }}>Private Investigations</p>
-            </div>
+          <button onClick={() => setCurrentPage('home')} className="flex items-center cursor-pointer">
+            <img src="/stars-logo.png" alt="Stars Private Investigations" className="h-12 w-auto" />
           </button>
 
           <nav className="hidden md:flex gap-8">
@@ -360,9 +354,7 @@ export default function StarsPrivateInvestigations() {
           {/* Hero */}
           <section className="text-white py-24 px-4 text-center" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 50%, #1a0a2e 100%)' }}>
             <div className="max-w-4xl mx-auto">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#7B2D8B' }}>
-                <Star className="w-12 h-12 text-white fill-white" />
-              </div>
+              <img src="/angels-logo.png" alt="21 Angels Strong" className="h-56 w-auto mx-auto mb-6" />
               <span className="px-4 py-1 rounded-full text-sm font-semibold mb-6 inline-block" style={{ backgroundColor: 'rgba(123,45,139,0.4)', border: '1px solid #c084d4', color: '#e0b0f0' }}>
                 501(c)(3) Nonprofit Organization
               </span>
@@ -992,14 +984,9 @@ export default function StarsPrivateInvestigations() {
           <footer className="text-gray-400 py-10 px-4" style={{ backgroundColor: '#0a1929' }}>
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#B8860B' }}>
-                    <Star className="w-6 h-6 text-white fill-white" />
-                  </div>
-                  <div>
-                    <p className="text-white font-bold">STARS Private Investigations</p>
-                    <p className="text-xs">San Antonio, TX | Licensed &amp; Bonded #C00444101</p>
-                  </div>
+                <div className="flex flex-col gap-1">
+                  <img src="/stars-logo.png" alt="Stars Private Investigations" className="h-10 w-auto brightness-0 invert" />
+                  <p className="text-xs">San Antonio, TX | Licensed &amp; Bonded #C00444101</p>
                 </div>
 
                 {/* Social Media Links */}
