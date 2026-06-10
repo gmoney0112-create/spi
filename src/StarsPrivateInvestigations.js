@@ -157,8 +157,14 @@ export default function StarsPrivateInvestigations() {
       {/* Header/Navigation */}
       <header className="text-white sticky top-0 z-50" style={{ backgroundColor: '#001F3F' }}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <button onClick={() => setCurrentPage('home')} className="flex items-center cursor-pointer">
-            <img src="/stars-logo.png" alt="Stars Private Investigations" className="h-12 w-auto" />
+          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 cursor-pointer">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#B8860B' }}>
+              <Star className="w-6 h-6 text-white fill-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold">STARS</h1>
+              <p className="text-xs" style={{ color: '#B8860B' }}>Private Investigations</p>
+            </div>
           </button>
 
           <nav className="hidden md:flex gap-8">
@@ -1026,9 +1032,14 @@ export default function StarsPrivateInvestigations() {
           <footer className="text-gray-400 py-10 px-4" style={{ backgroundColor: '#0a1929' }}>
             <div className="max-w-6xl mx-auto">
               <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
-                <div className="flex flex-col gap-1">
-                  <img src="/stars-logo.png" alt="Stars Private Investigations" className="h-10 w-auto brightness-0 invert" />
-                  <p className="text-xs">San Antonio, TX | Licensed &amp; Bonded #C00444101</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#B8860B' }}>
+                    <Star className="w-6 h-6 text-white fill-white" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold">STARS Private Investigations</p>
+                    <p className="text-xs">San Antonio, TX | Licensed &amp; Bonded #C00444101</p>
+                  </div>
                 </div>
 
                 {/* Social Media Links */}
