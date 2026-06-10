@@ -652,6 +652,40 @@ export default function StarsPrivateInvestigations() {
                   title="Stars Private Investigations Video"
                 />
               </div>
+
+              {/* Additional Videos */}
+              <div className="grid md:grid-cols-3 gap-6 mt-6">
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://drive.google.com/file/d/1fcaUDyDqLXKHHUDlc_1Zn2q77zNE4Aln/preview"
+                    width="100%"
+                    height="240"
+                    allow="autoplay"
+                    allowFullScreen
+                    title="Stars Private Investigations Video 2"
+                  />
+                </div>
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://drive.google.com/file/d/1Zj0xFSSfg7mfPGHiqwxPBnLfPkwrZ0YO/preview"
+                    width="100%"
+                    height="240"
+                    allow="autoplay"
+                    allowFullScreen
+                    title="Stars Private Investigations Video 3"
+                  />
+                </div>
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://drive.google.com/file/d/1ed73DL8Oqjx21ZLWF5GE8yaAP1m0Pq20/preview"
+                    width="100%"
+                    height="240"
+                    allow="autoplay"
+                    allowFullScreen
+                    title="Stars Private Investigations Video 4"
+                  />
+                </div>
+              </div>
             </div>
           </section>
 
