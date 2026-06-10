@@ -373,6 +373,11 @@ export default function StarsPrivateInvestigations() {
           <section className="py-16 px-4 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-8" style={{ color: '#3b0764' }}>Our Mission</h2>
+              <div className="bg-purple-50 border-l-4 rounded-lg p-6 mb-8" style={{ borderColor: '#7B2D8B' }}>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  21 Angels Strong was born from tragedy. Our organization was inspired by a devastating active shooting event that claimed the lives of multiple innocent individuals — a heartbreaking loss that made clear the urgent need for better-trained, better-equipped protectors in our schools and communities.
+                </p>
+              </div>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 text-center">
                 21 Angels Strong was created to honor the lives of 21 angels and to give people a meaningful way to help make child safety a priority.
               </p>
@@ -618,6 +623,29 @@ export default function StarsPrivateInvestigations() {
                 To provide accurate information, professional investigative services, and peace of mind to every client we serve. Whether assisting individuals, attorneys, businesses, or families, we are committed to delivering reliable results with honesty, integrity, and respect.
               </p>
             </div>
+            {/* Leadership & Board */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold text-center mb-8" style={{ color: '#001F3F' }}>Leadership & Board</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { name: 'Tiynomi Sheely',   role: 'President' },
+                  { name: 'Ricardo Camacho',  role: 'Vice President' },
+                  { name: 'Sara Rodriguez',   role: 'Secretary' },
+                  { name: 'Terrance Gee',     role: 'Board Member' },
+                ].map((member, i) => (
+                  <div key={i} className="flex items-center gap-4 p-5 rounded-lg border-2" style={{ borderColor: '#B8860B' }}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg" style={{ backgroundColor: '#001F3F' }}>
+                      {member.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-bold text-lg" style={{ color: '#001F3F' }}>{member.name}</p>
+                      <p className="text-sm font-semibold" style={{ color: '#B8860B' }}>{member.role}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="text-center">
               <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
                 Return to Home
