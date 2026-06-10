@@ -208,6 +208,152 @@ export default function StarsPrivateInvestigations() {
         Call Now
       </a>
 
+      {/* PRIVACY POLICY PAGE */}
+      {currentPage === 'privacy' && (
+        <section className="py-16 px-4 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+              ← Back to Home
+            </button>
+            <h1 className="text-4xl font-bold mb-2" style={{ color: '#001F3F' }}>Privacy Policy</h1>
+            <p className="text-gray-500 text-sm mb-10">Effective Date: January 1, 2024 | Last Updated: January 1, 2024</p>
+
+            {[
+              {
+                title: '1. Introduction',
+                body: 'Stars Private Investigations ("Company," "we," "us," or "our") is committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.starsprivatei.com or contact us for services. Please read this policy carefully. If you disagree with its terms, please discontinue use of our site.'
+              },
+              {
+                title: '2. Information We Collect',
+                body: 'We may collect personal information that you voluntarily provide when you fill out a contact form, submit a service inquiry, or apply for a career position. This may include:\n• Full name\n• Email address\n• Phone number\n• Service interest or position of interest\n• Any additional information you choose to include in a message\n\nWe do not collect payment information directly. All donation payments are processed securely through Stripe.'
+              },
+              {
+                title: '3. How We Use Your Information',
+                body: 'We use the information we collect to:\n• Respond to your inquiries and service requests\n• Process job applications and career inquiries\n• Communicate with you about our services, training, and updates\n• Improve our website and user experience\n• Comply with applicable laws and regulations\n\nWe will never sell, rent, or trade your personal information to third parties for marketing purposes.'
+              },
+              {
+                title: '4. How We Share Your Information',
+                body: 'We may share your information in the following limited circumstances:\n• Service Providers: With trusted third-party vendors who help us operate our website and services (such as form processing via Formspree and donation processing via Stripe), each bound by confidentiality obligations.\n• Legal Requirements: If required by law, court order, or governmental authority.\n• Business Protection: To protect the rights, property, or safety of Stars Private Investigations, our clients, or the public.\n\nWe do not share your information with any third parties for advertising or marketing purposes.'
+              },
+              {
+                title: '5. Cookies and Tracking',
+                body: 'Our website may use standard web technologies such as cookies and similar tracking tools to enhance your browsing experience. You may configure your browser to refuse cookies; however, some portions of the site may not function properly as a result. We do not use cookies for advertising or behavioral tracking purposes.'
+              },
+              {
+                title: '6. Data Security',
+                body: 'We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security.'
+              },
+              {
+                title: '7. Third-Party Links',
+                body: 'Our website may contain links to third-party websites including Stripe, Calendly, and social media platforms. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies before submitting any personal information.'
+              },
+              {
+                title: '8. Children\'s Privacy',
+                body: 'Our website is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a child, please contact us immediately and we will take steps to delete it.'
+              },
+              {
+                title: '9. Your Rights',
+                body: 'You have the right to:\n• Request access to the personal information we hold about you\n• Request correction of inaccurate information\n• Request deletion of your personal information\n• Opt out of future communications at any time\n\nTo exercise any of these rights, please contact us at spitx06@gmail.com or by phone at (210) 637-9061.'
+              },
+              {
+                title: '10. Changes to This Policy',
+                body: 'We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated effective date. Your continued use of our website after any changes constitutes your acceptance of the updated policy.'
+              },
+              {
+                title: '11. Contact Us',
+                body: 'If you have questions or concerns about this Privacy Policy, please contact us:\n\nStars Private Investigations\n7461 Callaghan Rd, Ste 100\nSan Antonio, TX 78229\nPhone: (210) 637-9061\nEmail: spitx06@gmail.com'
+              }
+            ].map((section, i) => (
+              <div key={i} className="mb-8">
+                <h2 className="text-xl font-bold mb-3" style={{ color: '#001F3F' }}>{section.title}</h2>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{section.body}</p>
+              </div>
+            ))}
+
+            <div className="mt-10 text-center">
+              <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
+                Return to Home
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* TERMS OF SERVICE PAGE */}
+      {currentPage === 'terms' && (
+        <section className="py-16 px-4 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+              ← Back to Home
+            </button>
+            <h1 className="text-4xl font-bold mb-2" style={{ color: '#001F3F' }}>Terms of Service</h1>
+            <p className="text-gray-500 text-sm mb-10">Effective Date: January 1, 2024 | Last Updated: January 1, 2024</p>
+
+            {[
+              {
+                title: '1. Acceptance of Terms',
+                body: 'By accessing or using the Stars Private Investigations website (www.starsprivatei.com), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site. These terms apply to all visitors, users, and others who access the site.'
+              },
+              {
+                title: '2. Use of Website',
+                body: 'You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of others or restrict their use and enjoyment of the site. Prohibited uses include:\n• Submitting false or misleading information through any form\n• Attempting to gain unauthorized access to any part of the site\n• Using the site to harass, abuse, or harm any individual\n• Transmitting any viruses, malware, or other harmful code\n• Scraping or harvesting data from the site without permission'
+              },
+              {
+                title: '3. Services and Engagement',
+                body: 'Information provided on this website is for general informational purposes only and does not constitute a contract for services. Engagement of Stars Private Investigations for any security, investigative, training, or related service requires a separate written agreement signed by both parties. No service relationship is established by submitting a contact form or inquiry through this website.\n\nAll services are subject to availability, licensing requirements, and applicable Texas and federal law.'
+              },
+              {
+                title: '4. Licensing and Compliance',
+                body: 'Stars Private Investigations operates under Texas Department of Public Safety License #C00444101. All security and investigative services are performed in compliance with applicable Texas laws, including the Texas Private Security Act. We reserve the right to decline any engagement that falls outside our licensing authority or conflicts with applicable law.'
+              },
+              {
+                title: '5. Intellectual Property',
+                body: 'All content on this website, including text, graphics, logos, images, and design elements, is the property of Stars Private Investigations and is protected by applicable copyright and trademark laws. You may not reproduce, distribute, modify, or create derivative works from any content on this site without our express written permission.'
+              },
+              {
+                title: '6. Disclaimer of Warranties',
+                body: 'This website is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied. Stars Private Investigations does not warrant that the site will be uninterrupted, error-free, or free of viruses or other harmful components. We do not warrant the accuracy, completeness, or usefulness of any information on the site.'
+              },
+              {
+                title: '7. Limitation of Liability',
+                body: 'To the fullest extent permitted by law, Stars Private Investigations shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of this website or reliance on any information provided herein. Our total liability to you for any claim arising from use of this site shall not exceed $100.'
+              },
+              {
+                title: '8. Third-Party Services',
+                body: 'Our website may integrate with or link to third-party services including Formspree (form processing), Stripe (donation processing), Calendly (scheduling), and social media platforms. Your use of those services is governed by their respective terms of service and privacy policies. Stars Private Investigations is not responsible for the practices or content of third-party services.'
+              },
+              {
+                title: '9. Governing Law',
+                body: 'These Terms of Service shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the state and federal courts located in Bexar County, Texas.'
+              },
+              {
+                title: '10. Indemnification',
+                body: 'You agree to indemnify, defend, and hold harmless Stars Private Investigations, its officers, employees, agents, and affiliates from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorney\'s fees) arising out of or related to your use of the website or your violation of these Terms of Service.'
+              },
+              {
+                title: '11. Modifications to Terms',
+                body: 'We reserve the right to modify these Terms of Service at any time. Updated terms will be posted on this page with a revised effective date. Your continued use of the website after any modifications constitutes your acceptance of the revised terms. It is your responsibility to review these terms periodically.'
+              },
+              {
+                title: '12. Contact Us',
+                body: 'If you have any questions about these Terms of Service, please contact us:\n\nStars Private Investigations\n7461 Callaghan Rd, Ste 100\nSan Antonio, TX 78229\nPhone: (210) 637-9061\nEmail: spitx06@gmail.com'
+              }
+            ].map((section, i) => (
+              <div key={i} className="mb-8">
+                <h2 className="text-xl font-bold mb-3" style={{ color: '#001F3F' }}>{section.title}</h2>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{section.body}</p>
+              </div>
+            ))}
+
+            <div className="mt-10 text-center">
+              <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
+                Return to Home
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 21 ANGELS PAGE */}
       {currentPage === '21angels' && (
         <div className="w-full">
@@ -841,8 +987,8 @@ export default function StarsPrivateInvestigations() {
 
               <div className="text-center">
                 <div className="flex flex-wrap justify-center gap-6 mb-4">
-                  <button className="hover:text-white transition">Privacy Policy</button>
-                  <button className="hover:text-white transition">Terms of Service</button>
+                  <button onClick={() => setCurrentPage('privacy')} className="hover:text-white transition">Privacy Policy</button>
+                  <button onClick={() => setCurrentPage('terms')} className="hover:text-white transition">Terms of Service</button>
                   <button className="hover:text-white transition">Certifications</button>
                   <button onClick={() => setCurrentPage('careers')} className="hover:text-white transition">Careers</button>
                   <button onClick={() => setCurrentPage('about')} className="hover:text-white transition">About</button>
