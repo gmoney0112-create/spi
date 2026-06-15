@@ -359,15 +359,16 @@ export default function StarsPrivateInvestigations() {
 
           {/* Video */}
           <section className="py-8 px-4 bg-white">
-            <div className="max-w-5xl mx-auto rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                src="https://drive.google.com/file/d/16oa5OtxOuESxU1j9YqbrBg-Ihba7tkNc/preview"
-                width="100%"
-                height="500"
-                allow="autoplay"
-                allowFullScreen
-                title="21 Angels Strong Video"
-              />
+            <div className="max-w-5xl mx-auto">
+              <div className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                <iframe
+                  src="https://drive.google.com/file/d/16oa5OtxOuESxU1j9YqbrBg-Ihba7tkNc/preview?autoplay=1"
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  title="21 Angels Strong Video"
+                />
+              </div>
             </div>
           </section>
 
@@ -681,49 +682,34 @@ export default function StarsPrivateInvestigations() {
           {/* Video Section */}
           <section className="py-8 px-4 bg-white">
             <div className="max-w-5xl mx-auto">
-              <div className="rounded-lg overflow-hidden shadow-lg">
+              {/* Main featured video - 16:9 responsive */}
+              <div className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                 <iframe
-                  src="https://drive.google.com/file/d/1eW8lr56_u0TLb06EYmupoGdpzMjaYQrT/preview"
-                  width="100%"
-                  height="600"
-                  allow="autoplay"
+                  src="https://drive.google.com/file/d/1eW8lr56_u0TLb06EYmupoGdpzMjaYQrT/preview?autoplay=1"
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                  allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Stars Private Investigations Video"
                 />
               </div>
 
-              {/* Additional Videos */}
+              {/* Additional Videos - 16:9 responsive grid */}
               <div className="grid md:grid-cols-3 gap-6 mt-6">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src="https://drive.google.com/file/d/1fcaUDyDqLXKHHUDlc_1Zn2q77zNE4Aln/preview"
-                    width="100%"
-                    height="240"
-                    allow="autoplay"
-                    allowFullScreen
-                    title="Stars Private Investigations Video 2"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src="https://drive.google.com/file/d/1Zj0xFSSfg7mfPGHiqwxPBnLfPkwrZ0YO/preview"
-                    width="100%"
-                    height="240"
-                    allow="autoplay"
-                    allowFullScreen
-                    title="Stars Private Investigations Video 3"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <iframe
-                    src="https://drive.google.com/file/d/1ed73DL8Oqjx21ZLWF5GE8yaAP1m0Pq20/preview"
-                    width="100%"
-                    height="240"
-                    allow="autoplay"
-                    allowFullScreen
-                    title="Stars Private Investigations Video 4"
-                  />
-                </div>
+                {[
+                  { id: '1fcaUDyDqLXKHHUDlc_1Zn2q77zNE4Aln', title: 'Stars Private Investigations Video 2' },
+                  { id: '1Zj0xFSSfg7mfPGHiqwxPBnLfPkwrZ0YO', title: 'Stars Private Investigations Video 3' },
+                  { id: '1ed73DL8Oqjx21ZLWF5GE8yaAP1m0Pq20', title: 'Stars Private Investigations Video 4' },
+                ].map((v) => (
+                  <div key={v.id} className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                    <iframe
+                      src={`https://drive.google.com/file/d/${v.id}/preview?autoplay=1`}
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                      allow="autoplay; fullscreen"
+                      allowFullScreen
+                      title={v.title}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </section>
