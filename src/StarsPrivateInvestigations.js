@@ -685,9 +685,9 @@ export default function StarsPrivateInvestigations() {
               {/* Main featured video - 16:9 responsive */}
               <div className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                 <iframe
-                  src="https://drive.google.com/file/d/1eW8lr56_u0TLb06EYmupoGdpzMjaYQrT/preview?autoplay=1"
+                  src="https://www.youtube.com/embed/SVd0o30yc6s?autoplay=1&rel=0"
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                  allow="autoplay; fullscreen"
+                  allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   title="Stars Private Investigations Video"
                 />
@@ -696,15 +696,15 @@ export default function StarsPrivateInvestigations() {
               {/* Additional Videos - 16:9 responsive grid */}
               <div className="grid md:grid-cols-3 gap-6 mt-6">
                 {[
-                  { id: '1fcaUDyDqLXKHHUDlc_1Zn2q77zNE4Aln', title: 'Stars Private Investigations Video 2' },
-                  { id: '1Zj0xFSSfg7mfPGHiqwxPBnLfPkwrZ0YO', title: 'Stars Private Investigations Video 3' },
-                  { id: '1ed73DL8Oqjx21ZLWF5GE8yaAP1m0Pq20', title: 'Stars Private Investigations Video 4' },
+                  { id: 'qLv9D4LvZTs', title: 'Stars Private Investigations Video 2' },
+                  { id: 'AKPT2PCHl0w', title: 'Stars Private Investigations Video 3' },
+                  { id: 'Ur3m84kJyGo', title: 'Stars Private Investigations Video 4' },
                 ].map((v) => (
                   <div key={v.id} className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                     <iframe
-                      src={`https://drive.google.com/file/d/${v.id}/preview?autoplay=1`}
+                      src={`https://www.youtube.com/embed/${v.id}?rel=0`}
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                      allow="autoplay; fullscreen"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                       title={v.title}
                     />
