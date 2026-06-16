@@ -698,7 +698,6 @@ export default function StarsPrivateInvestigations() {
                 {[
                   { id: 'qLv9D4LvZTs', title: 'Stars Private Investigations Video 2' },
                   { id: 'AKPT2PCHl0w', title: 'Stars Private Investigations Video 3' },
-                  { id: 'Ur3m84kJyGo', title: 'Stars Private Investigations Video 4' },
                 ].map((v) => (
                   <div key={v.id} className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                     <iframe
