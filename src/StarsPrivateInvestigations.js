@@ -691,7 +691,7 @@ export default function StarsPrivateInvestigations() {
                 🎖️ Veteran-Owned | Licensed & Bonded #C00444101 | San Antonio, TX
               </span>
               <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-5 leading-tight text-center">
-                <span className="block">Is Your Property at Risk?</span>
+                <span className="block">Is Your Property <span className="whitespace-nowrap">at Risk?</span></span>
                 <span className="block" style={{ color: '#B8860B' }}>Free Security Assessment for San Antonio Property Managers</span>
               </h1>
               <p className="text-xl opacity-90 mb-10 leading-relaxed">
