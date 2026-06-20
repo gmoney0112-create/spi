@@ -22,10 +22,12 @@ export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
   const [currentPage, setCurrentPage]           = useState('home');
   const [currentBlogPost, setCurrentBlogPost]   = useState(null);
+  const [currentService, setCurrentService]     = useState(null);
 
   const navigateTo = (page) => {
     setCurrentPage(page);
     setCurrentBlogPost(null);
+    setCurrentService(null);
     const hashMap = { home: '', assessment: '#assessment', '21angels': '#21angels', about: '#about', careers: '#careers', privacy: '#privacy', terms: '#terms' };
     window.location.hash = hashMap[page] ?? '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -34,6 +36,14 @@ export default function StarsPrivateInvestigations() {
 
   const openArticle = (id) => {
     setCurrentBlogPost(id);
+    setCurrentService(null);
+    setCurrentPage('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openService = (id) => {
+    setCurrentService(id);
+    setCurrentBlogPost(null);
     setCurrentPage('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -50,16 +60,185 @@ export default function StarsPrivateInvestigations() {
   const [careerStatus, setCareerStatus]         = useState('');
 
   const services = [
-    { id: 'guards',      title: 'Security Guards',        desc: 'Licensed, professional security officers for your facility' },
-    { id: 'campus',      title: 'Campus & School Security', desc: 'Specialized protection for educational institutions' },
-    { id: 'protection',  title: 'Protection Services',    desc: 'Customized security solutions for businesses' },
-    { id: 'training',    title: 'Training & Classes',     desc: 'Professional certifications and security training' },
-    { id: 'extradition', title: 'Extradition Services',   desc: 'Professional fugitive transport and extradition assistance' },
-    { id: 'pi',          title: 'Private Investigation',  desc: 'Discreet, thorough investigations for individuals, businesses, and attorneys' },
-    { id: 'event',       title: 'Event Security',         desc: 'Reliable security coverage for private and public events of all sizes' },
-    { id: 'monitoring',  title: 'Personnel Monitoring',   desc: 'Surveillance and monitoring services for workforce accountability' },
-    { id: 'process',     title: 'Process Serving',        desc: 'Fast, reliable legal document delivery throughout Texas' }
+    { id: 'armed-security',         title: 'Armed Security Guards',          desc: 'Licensed armed officers providing maximum deterrence for high-risk properties and businesses.' },
+    { id: 'unarmed-security',       title: 'Unarmed Security Guards',        desc: 'Professional uniformed officers delivering visible, reliable protection for any facility.' },
+    { id: 'construction-security',  title: 'Construction Site Security',     desc: '24/7 on-site protection against theft, vandalism, and unauthorized access at active job sites.' },
+    { id: 'apartment-security',     title: 'Apartment Security',             desc: 'Dedicated residential security that protects tenants, reduces incidents, and improves retention.' },
+    { id: 'event-security',         title: 'Event Security',                 desc: 'Reliable security coverage for private and public events of all sizes across San Antonio.' },
+    { id: 'executive-protection',   title: 'Executive Protection',           desc: 'Discreet, professional close protection for executives, VIPs, and high-profile individuals.' },
+    { id: 'mobile-patrol',          title: 'Mobile Patrol',                  desc: 'Flexible, cost-effective vehicle patrols covering multiple locations on a scheduled or random basis.' },
+    { id: 'private-investigations', title: 'Private Investigations',         desc: 'Discreet, thorough investigations for individuals, businesses, attorneys, and law enforcement.' },
+    { id: 'campus-security',        title: 'School & Campus Security Guards',desc: 'Specialized security for K–12 campuses, universities, and educational institutions across Texas.' },
+    { id: 'extradition',            title: 'Extradition Services',           desc: 'Professional fugitive transport and extradition assistance for law enforcement agencies.' },
+    { id: 'monitoring',             title: 'Personnel Monitoring',           desc: 'Surveillance and monitoring services for workforce accountability and loss prevention.' },
+    { id: 'process',                title: 'Process Serving',                desc: 'Fast, reliable legal document delivery throughout Texas.' },
+    { id: 'training',               title: 'Training & Classes',             desc: 'Professional certifications and security training from licensed instructors.' },
   ];
+
+  const servicePages = {
+    'armed-security': {
+      title: 'Armed Security Guards',
+      tagline: 'Maximum deterrence. Licensed. Professional. Ready.',
+      hero: 'When the risk level demands it, Stars Private Investigations provides licensed armed security officers with the training, temperament, and authority to protect your people, property, and assets.',
+      intro: 'Armed security is appropriate when the potential consequences of a security breach are severe — high-value inventory, cash handling, sensitive information, or environments with elevated threat profiles. Our armed officers are fully licensed under the Texas Department of Public Safety, thoroughly vetted, and trained not just to carry a firearm but to de-escalate, communicate, and make sound decisions under pressure.',
+      includes: [
+        'DPS-licensed armed security officers (Level III & IV)',
+        'Thorough background checks and drug screening on all personnel',
+        'Firearms qualification and ongoing weapons proficiency training',
+        'De-escalation and use-of-force judgment training',
+        'Uniformed or plain-clothes deployment options',
+        'Incident documentation and reporting',
+        'Radio communication and direct law enforcement coordination',
+        'Flexible scheduling: fixed post, roving patrol, or hybrid',
+      ],
+      useCases: ['Banks and financial institutions', 'Jewelry stores and retail with high-value inventory', 'Healthcare facilities and pharmacies', 'Government and municipal buildings', 'Corporate campuses and data centers', 'Nightclubs, entertainment venues, and high-capacity events'],
+      why: 'Every armed officer we deploy has been personally vetted by our leadership team. We don\'t just check a license box — we screen for judgment, professionalism, and the ability to protect without escalating. When you hire Stars, you\'re getting officers who understand that the goal is prevention, not confrontation.',
+    },
+    'unarmed-security': {
+      title: 'Unarmed Security Guards',
+      tagline: 'Visible. Professional. Effective.',
+      hero: 'Stars Private Investigations provides licensed unarmed security officers who deliver professional, reliable protection across a wide range of industries and facility types throughout San Antonio and South Texas.',
+      intro: 'Unarmed security guards are the most versatile and widely deployed form of professional security. They provide a visible deterrent, manage access control, enforce property rules, respond to incidents, and serve as the first point of contact for visitors and tenants. When properly trained and supervised — which is where Stars stands apart — unarmed officers significantly reduce incidents and liability exposure.',
+      includes: [
+        'DPS-licensed security officers',
+        'Access control and visitor management',
+        'Regular patrols of interior and exterior areas',
+        'Incident documentation and reporting',
+        'Conflict de-escalation and intervention',
+        'Emergency response coordination',
+        'Uniformed presence with professional appearance standards',
+        'Daily activity reports and incident logs',
+      ],
+      useCases: ['Office buildings and corporate campuses', 'Retail centers and shopping complexes', 'Apartment complexes and HOA communities', 'Hotels and hospitality properties', 'Warehouses and distribution centers', 'Healthcare facilities, clinics, and medical offices'],
+      why: 'Our officers are not warm bodies with a badge. They are trained professionals who understand customer service as well as security. We maintain supervision, conduct random site checks, and hold our officers to the standards we\'d want protecting our own families.',
+    },
+    'construction-security': {
+      title: 'Construction Site Security',
+      tagline: 'Protect your site. Protect your timeline.',
+      hero: 'Construction sites are among the most frequently targeted commercial properties in Texas. Stars Private Investigations provides specialized security for active job sites — protecting equipment, materials, and personnel from theft, vandalism, and unauthorized access.',
+      intro: 'The average construction site theft loss in Texas runs between $10,000 and $50,000 per incident. Equipment theft, copper wire theft, tool staging theft, and vandalism don\'t just cost money — they delay timelines, affect insurance premiums, and can shut down operations for days. Visible, professional security is the most effective deterrent available.',
+      includes: [
+        'On-site uniformed security officers (armed or unarmed)',
+        '24/7 coverage options including overnight and weekend shifts',
+        'Perimeter monitoring and unauthorized access prevention',
+        'Vehicle and equipment log tracking (in/out)',
+        'Coordination with site superintendents and project managers',
+        'Incident documentation for insurance and legal purposes',
+        'Mobile patrol options for multi-site coverage',
+        'Gate access control and contractor credentialing',
+      ],
+      useCases: ['Residential construction developments', 'Commercial and industrial build-outs', 'Infrastructure and road construction projects', 'School and municipal construction sites', 'Multi-phase developments with extended timelines', 'Sites with high-value equipment or materials staging'],
+      why: 'We understand construction site dynamics. Our officers know how to work alongside subcontractors, enforce site-specific protocols, and maintain documentation that protects your project if a theft or incident leads to an insurance or legal claim.',
+    },
+    'apartment-security': {
+      title: 'Apartment Security',
+      tagline: 'Protect your tenants. Protect your investment.',
+      hero: 'Stars Private Investigations partners with residential property managers and owners to deliver professional security that reduces incidents, improves tenant satisfaction, and reduces liability exposure across apartment communities throughout San Antonio.',
+      intro: 'A secure apartment community is a competitive advantage. Properties with visible, professional security see fewer break-ins, lower tenant turnover, better online reviews, and more defensible positions when incidents do occur. We work with you to deploy the right mix of staffing, patrol, and access control support for your specific property.',
+      includes: [
+        'Uniformed security officers for fixed-post or roving patrol',
+        'Evening and overnight coverage for high-incident windows',
+        'Parking lot patrol and vehicle trespass enforcement',
+        'Common area monitoring (clubhouse, pool, gym, laundry)',
+        'Access control support at gated entries',
+        'Incident documentation and nightly activity reports',
+        'Emergency response and 911 coordination',
+        'Lease violation reporting to property management',
+      ],
+      useCases: ['Market-rate apartment communities', 'Affordable and Section 8 housing complexes', 'Student housing near universities and colleges', 'Mixed-use developments with residential units', 'HOA communities and gated neighborhoods', 'Senior living facilities and independent living communities'],
+      why: 'Property managers who partner with Stars see measurable results: fewer police calls, faster resolution of tenant disputes, and improved reviews. We provide detailed reporting so you always know what\'s happening on your property — even when you\'re not on site.',
+    },
+    'event-security': {
+      title: 'Event Security',
+      tagline: 'Professional crowd management for events of any size.',
+      hero: 'Stars Private Investigations provides licensed event security personnel for private parties, corporate gatherings, concerts, sporting events, festivals, and public events across San Antonio and South Texas.',
+      intro: 'Events create unique security challenges: temporary venues, large crowds, alcohol, unpredictable behavior, and limited time to prepare. Our event security teams are trained in crowd management, access control, conflict de-escalation, and emergency response coordination — deployed in numbers and configurations matched to your event\'s actual risk profile.',
+      includes: [
+        'Venue perimeter control and crowd management',
+        'Entry screening and guest list verification',
+        'Armed or unarmed officers based on event type and risk level',
+        'VIP area protection and access management',
+        'Alcohol and behavior management',
+        'Coordination with local law enforcement and EMS',
+        'Emergency evacuation planning and execution support',
+        'Post-event venue security during breakdown',
+      ],
+      useCases: ['Corporate events, galas, and award ceremonies', 'Concerts, festivals, and outdoor events', 'Sporting events and tournaments', 'Private parties, weddings, and high-profile social gatherings', 'Political events and public forums', 'Trade shows, expos, and convention center events'],
+      why: 'We staff events with experienced officers who have handled real crowds — not first-timers placed to fill a schedule. Our event coordinators work with your production team before the event to understand layout, capacity, risk points, and emergency procedures.',
+    },
+    'executive-protection': {
+      title: 'Executive Protection',
+      tagline: 'Discreet. Prepared. Professional.',
+      hero: 'Stars Private Investigations provides close protection services for executives, business owners, public figures, athletes, and high-net-worth individuals requiring personal security in San Antonio, South Texas, and beyond.',
+      intro: 'Executive protection is not just about physical presence — it\'s about threat awareness, advance planning, route security, and the ability to respond intelligently before situations escalate. Our protection specialists operate with professionalism and discretion, blending into your environment while maintaining constant situational awareness.',
+      includes: [
+        'Dedicated close protection officers (CPO)',
+        'Advance work and venue threat assessment',
+        'Travel route planning and security',
+        'Residential and hotel security protocols',
+        'Vehicle and transportation security',
+        'Security detail coordination for public appearances',
+        'Threat assessment and risk profiling',
+        'Emergency response and extraction planning',
+      ],
+      useCases: ['C-suite executives during high-risk travel or events', 'Business owners receiving threats or involved in litigation', 'Public figures and local officials', 'Athletes and entertainers visiting San Antonio', 'High-profile individuals during sensitive negotiations', 'International travelers requiring ground security support'],
+      why: 'Our protection specialists are drawn from military and law enforcement backgrounds. They understand that the best protection is invisible — preventing incidents through preparation rather than reacting publicly to them. Your safety, and your privacy, are both protected.',
+    },
+    'mobile-patrol': {
+      title: 'Mobile Patrol',
+      tagline: 'Broad coverage. Flexible scheduling. Cost-effective protection.',
+      hero: 'Stars Private Investigations\' mobile patrol service provides scheduled or random vehicle patrols across multiple properties or large campuses — delivering a visible security presence at a fraction of the cost of fixed-post staffing.',
+      intro: 'Mobile patrol is ideal for properties that require a regular security presence without the cost of a full-time officer. Our patrol units cover your property on a defined schedule or random intervals — checking access points, monitoring for unauthorized activity, documenting conditions, and responding to alarms or incidents. A patrol unit arriving at unpredictable times is often more effective at deterring crime than a stationary guard.',
+      includes: [
+        'Marked or unmarked patrol vehicles',
+        'Scheduled and randomized patrol routes',
+        'Exterior and interior checks based on access availability',
+        'Lock and alarm verification',
+        'Photo documentation of conditions and findings',
+        'Incident reporting with timestamped patrol logs',
+        'Rapid response to alarm activations',
+        'Multi-property coverage under a single contract',
+      ],
+      useCases: ['Commercial properties with after-hours risk but limited budget', 'Industrial and warehouse facilities', 'Retail strip centers and shopping plazas', 'HOA communities and neighborhood patrols', 'Multi-location businesses needing coverage across sites', 'Properties between fixed-post contracts or during staffing gaps'],
+      why: 'Mobile patrol maximizes security coverage per dollar. Instead of one officer at one location, our units cover multiple properties efficiently. You get documented patrol reports, incident response capability, and a visible deterrent — without the overhead of permanent staffing at every location.',
+    },
+    'private-investigations': {
+      title: 'Private Investigations',
+      tagline: 'Discreet. Thorough. Results-Driven.',
+      hero: 'Stars Private Investigations provides licensed investigative services for individuals, businesses, law firms, and insurance companies throughout Texas. Led by a 26-year Army veteran and active law enforcement captain, our investigations are conducted with professionalism, legal compliance, and attention to detail.',
+      intro: 'Private investigation is about finding facts — accurately, legally, and in a form that holds up if the case goes to court or negotiation. Our investigators bring law enforcement backgrounds, field experience, and an understanding of Texas law to every case. We work discreetly, report thoroughly, and deliver findings that you can act on.',
+      includes: [
+        'Surveillance and evidence collection',
+        'Background investigations and subject research',
+        'Infidelity and domestic investigations',
+        'Missing persons location services',
+        'Workers\' compensation and insurance fraud investigations',
+        'Corporate investigations and due diligence',
+        'Asset searches and skip tracing',
+        'Legal support and testimony if required',
+      ],
+      useCases: ['Individuals suspecting infidelity or deception', 'Attorneys needing documented evidence for civil or family cases', 'Businesses conducting pre-hire or vendor due diligence', 'Insurance companies investigating suspicious claims', 'Families searching for missing persons', 'Employers investigating internal theft or misconduct'],
+      why: 'Our founder, Tony Trevino, served 26 years in the U.S. Army and currently serves as a Captain with the Maverick County Sheriff\'s Office. That background means our investigations are conducted with the same rigor and legal discipline as law enforcement — giving you findings that are accurate, admissible, and actionable.',
+    },
+    'campus-security': {
+      title: 'School & Campus Security Guards',
+      tagline: 'Protecting students. Supporting educators. Securing campuses.',
+      hero: 'Stars Private Investigations provides specialized security personnel trained for K–12 schools, universities, community colleges, and educational campuses throughout San Antonio and South Texas.',
+      intro: 'Educational institutions face security challenges unlike any other environment — the need to balance safety with openness, to protect without creating fear, and to respond effectively when situations escalate. Our campus security officers are trained specifically for school environments: threat recognition, student interaction, visitor management, and emergency response coordination.',
+      includes: [
+        'DPS-licensed security officers with campus-specific training',
+        'Visitor access control and sign-in management',
+        'Perimeter monitoring and unauthorized access prevention',
+        'Coordination with school administration and local law enforcement',
+        'Active threat response training and drills',
+        'Parking lot and drop-off zone management',
+        'Event security for sporting events, performances, and dances',
+        'Incident documentation aligned with Texas Education Code requirements',
+      ],
+      useCases: ['K–12 public and private schools', 'Charter schools and alternative learning centers', 'Community colleges and vocational campuses', 'University and higher education facilities', 'School district administrative offices', 'After-school programs and extended care facilities'],
+      why: 'Campus security requires more than guard training — it requires officers who understand school culture, de-escalation with minors, and the unique legal framework governing Texas educational institutions. Our team is trained on Texas Education Code requirements, FERPA considerations, and the specific dynamics of protecting a school community without disrupting the learning environment.',
+    },
+  };
 
   const trainings = [
     'CPT Crisis Prevention Institute',
@@ -636,6 +815,106 @@ export default function StarsPrivateInvestigations() {
         </div>
       )}
 
+      {/* SERVICE DETAIL PAGE */}
+      {currentPage === 'home' && currentService && (() => {
+        const svc = servicePages[currentService];
+        if (!svc) return null;
+        return (
+          <div className="w-full bg-white">
+            {/* Hero */}
+            <section className="text-white py-20 px-4" style={{ background: 'linear-gradient(135deg, #001F3F 0%, #003d5c 100%)' }}>
+              <div className="max-w-4xl mx-auto">
+                <button onClick={() => { setCurrentService(null); setTimeout(() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="mb-6 text-sm opacity-70 hover:opacity-100 transition flex items-center gap-1">
+                  ← Back to Services
+                </button>
+                <span className="px-4 py-1 rounded-full text-sm font-semibold mb-6 inline-block" style={{ backgroundColor: 'rgba(184,134,11,0.3)', color: '#f0c040', border: '1px solid #B8860B' }}>
+                  🎖️ Veteran-Owned | Licensed & Bonded #C00444101 | San Antonio, TX
+                </span>
+                <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-4 leading-tight">{svc.title}</h1>
+                <p className="text-xl font-semibold mb-6" style={{ color: '#B8860B' }}>{svc.tagline}</p>
+                <p className="text-lg opacity-90 mb-10 leading-relaxed max-w-3xl">{svc.hero}</p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-lg font-bold text-slate-900 shadow-lg hover:opacity-90 transition" style={{ backgroundColor: '#B8860B' }}>
+                    Book Free Consultation
+                  </a>
+                  <a href="tel:2106379061" className="inline-block border-2 px-8 py-4 rounded-lg font-bold hover:opacity-90 transition flex items-center justify-center gap-2" style={{ borderColor: '#B8860B', color: '#B8860B' }}>
+                    <Phone className="w-5 h-5" /> (210) 637-9061
+                  </a>
+                </div>
+              </div>
+            </section>
+
+            {/* About this service */}
+            <section className="py-16 px-4 bg-white">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-6" style={{ color: '#001F3F' }}>About This Service</h2>
+                <p className="text-gray-700 text-lg leading-relaxed">{svc.intro}</p>
+              </div>
+            </section>
+
+            {/* What's Included */}
+            <section className="py-16 px-4" style={{ backgroundColor: '#f5f3f0' }}>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: '#001F3F' }}>What's Included</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {svc.includes.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm border-l-4" style={{ borderColor: '#B8860B' }}>
+                      <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold mt-0.5" style={{ backgroundColor: '#B8860B' }}>✓</div>
+                      <span className="text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Who It's For */}
+            <section className="py-16 px-4 bg-white">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-8 text-center" style={{ color: '#001F3F' }}>Who This Service Is For</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {svc.useCases.map((item, i) => (
+                    <div key={i} className="p-4 rounded-lg border-2 text-center font-medium" style={{ borderColor: '#001F3F', color: '#001F3F' }}>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Why Stars */}
+            <section className="py-16 px-4" style={{ backgroundColor: '#f5f3f0' }}>
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white p-8 rounded-xl border-l-4 shadow-sm" style={{ borderColor: '#B8860B' }}>
+                  <h2 className="text-2xl font-bold mb-4" style={{ color: '#001F3F' }}>Why Stars Private Investigations</h2>
+                  <p className="text-gray-700 text-lg leading-relaxed">{svc.why}</p>
+                  <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+                    {['Licensed & Bonded #C00444101', '26-Year Army Veteran Leadership', 'San Antonio & South Texas Based', '24/7 Available'].map((badge, i) => (
+                      <span key={i} className="px-3 py-1 rounded-full text-white" style={{ backgroundColor: '#001F3F' }}>{badge}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* CTA */}
+            <section className="py-16 px-4 text-white text-center" style={{ background: 'linear-gradient(135deg, #001F3F 0%, #003d5c 100%)' }}>
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+                <p className="text-lg opacity-90 mb-8">Contact Stars Private Investigations today for a free consultation on {svc.title.toLowerCase()}. We serve San Antonio, Eagle Pass, and all of South Texas.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="px-10 py-4 rounded-lg font-bold text-slate-900 shadow-lg hover:opacity-90 transition" style={{ backgroundColor: '#B8860B' }}>
+                    Schedule Free Consultation
+                  </a>
+                  <button onClick={() => { setCurrentService(null); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="border-2 px-10 py-4 rounded-lg font-bold hover:opacity-90 transition" style={{ borderColor: '#B8860B', color: '#B8860B' }}>
+                    Send Us a Message
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        );
+      })()}
+
       {/* BLOG ARTICLE DETAIL PAGE */}
       {currentPage === 'home' && currentBlogPost && (() => {
         const article = blogPosts.find(p => p.id === currentBlogPost);
@@ -976,7 +1255,7 @@ export default function StarsPrivateInvestigations() {
       )}
 
       {/* HOME PAGE */}
-      {currentPage === 'home' && !currentBlogPost && (
+      {currentPage === 'home' && !currentBlogPost && !currentService && (
 <>
           {/* Video Section */}
           <section className="py-8 px-4 bg-white">
@@ -1070,13 +1349,14 @@ export default function StarsPrivateInvestigations() {
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-4" style={{ color: '#001F3F' }}>Our Security Services</h2>
               <p className="text-center text-gray-600 mb-12">Serving businesses, schools, and individuals across San Antonio, Eagle Pass, and South Texas</p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map(service => (
-                  <div key={service.id} className="border-2 rounded-lg p-6 hover:shadow-lg transition cursor-pointer" style={{ borderColor: '#B8860B' }}>
+                  <button key={service.id} onClick={() => servicePages[service.id] ? openService(service.id) : scrollToSection('contact')} className="border-2 rounded-lg p-6 hover:shadow-lg transition cursor-pointer text-left w-full group" style={{ borderColor: '#B8860B' }}>
                     <Shield className="w-10 h-10 mb-3" style={{ color: '#B8860B' }} />
-                    <h3 className="font-bold text-lg mb-2" style={{ color: '#001F3F' }}>{service.title}</h3>
-                    <p className="text-gray-600 text-sm">{service.desc}</p>
-                  </div>
+                    <h3 className="font-bold text-lg mb-2 group-hover:underline" style={{ color: '#001F3F' }}>{service.title}</h3>
+                    <p className="text-gray-600 text-sm mb-3">{service.desc}</p>
+                    {servicePages[service.id] && <span className="text-xs font-semibold" style={{ color: '#B8860B' }}>Learn More →</span>}
+                  </button>
                 ))}
               </div>
             </div>
