@@ -21,13 +21,21 @@ const CALENDLY_URL = 'https://calendly.com/spitxadmin/30min';
 export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
   const [currentPage, setCurrentPage]           = useState('home');
+  const [currentBlogPost, setCurrentBlogPost]   = useState(null);
 
   const navigateTo = (page) => {
     setCurrentPage(page);
+    setCurrentBlogPost(null);
     const hashMap = { home: '', assessment: '#assessment', '21angels': '#21angels', about: '#about', careers: '#careers', privacy: '#privacy', terms: '#terms' };
     window.location.hash = hashMap[page] ?? '';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setMobileMenuOpen(false);
+  };
+
+  const openArticle = (id) => {
+    setCurrentBlogPost(id);
+    setCurrentPage('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -77,23 +85,72 @@ export default function StarsPrivateInvestigations() {
 
   const blogPosts = [
     {
-      title: '5 Signs Your Business Needs a Security Guard',
+      id: 'security-guard-company',
+      title: 'What to Look for in a Security Guard Company',
       date: 'May 2025',
-      summary: 'From rising theft to after-hours incidents, learn the warning signs that indicate it\'s time to invest in professional security for your San Antonio business.',
-      tag: 'Business Security'
+      tag: 'Business Security',
+      summary: 'Choosing the right security guard company is one of the most critical decisions a property manager can make. This guide walks you through the essential criteria that separate professional security providers from bottom-tier operators.',
+      sections: [
+        { heading: 'Introduction', body: 'Choosing the right security guard company is one of the most critical decisions a property manager can make. Your security provider directly impacts tenant safety, liability protection, and property value. Yet many property managers in San Antonio make this decision based on price alone—a costly mistake that often leads to inadequate coverage, unprofessional staff, and increased risk exposure.\n\nThis guide walks you through the essential criteria that separate professional security providers from bottom-tier operators.' },
+        { heading: '1. Licensing, Bonding, and Insurance', body: 'The non-negotiable foundation.\n\nBefore considering anything else, verify that your security provider holds:\n• Texas Security Officer License (issued by DPS)\n• Company licensing for armed or unarmed guard services\n• General liability insurance (minimum $1 million)\n• Workers\' compensation coverage for all employees\n\nAsk for proof of these. Any legitimate security company will provide documentation without hesitation. If they resist or seem unclear about licensing requirements, move on immediately.\n\nWhy this matters: An unlicensed security provider creates massive liability for your property. If an incident occurs and your guard isn\'t properly licensed, your insurance may refuse to cover losses, and you could face personal liability.' },
+        { heading: '2. Background Screening and Vetting Process', body: 'Your guards will have access to your property, tenants, and potentially sensitive information.\n\nReputable security companies conduct:\n• Criminal background checks\n• Texas DPS records review\n• National crime database searches\n• Previous employment verification\n• Driving records (if mobile patrol is involved)\n• Drug screening\n\nAsk how deep their vetting goes. "We run checks" is too vague. Request their actual screening procedure and turnaround time.\n\nRed flag: Companies that hire quickly with minimal screening typically have high turnover and lower-quality personnel.' },
+        { heading: '3. Training and Professional Development', body: 'Licensing is the floor, not the ceiling.\n\nThe best security companies invest in ongoing training:\n• De-escalation and conflict resolution\n• Emergency response procedures\n• First aid/CPR certification\n• Technology and access control systems\n• Customer service and professional standards\n\nAsk prospective providers:\n• How many hours of annual training does each guard receive?\n• Who conducts the training?\n• Are guards certified in any specialized areas?\n\nA guard with 8 hours of annual training is not equivalent to one with 40 hours. The difference shows up during incidents.' },
+        { heading: '4. Supervisory Oversight and Quality Control', body: 'Who watches the guards?\n\nAsk about:\n• Supervisor-to-guard ratio\n• Frequency of site visits and inspections\n• Random quality audits\n• Complaint resolution process\n• Incident reporting procedures\n\nProfessional companies conduct surprise inspections and maintain detailed incident logs. If a provider can\'t tell you how they oversee their personnel, they likely aren\'t.' },
+        { heading: '5. Technology and Reporting Systems', body: 'Modern security requires modern tools.\n\nLook for companies that offer:\n• Digital incident reporting (not handwritten logs)\n• Real-time alert systems\n• Video integration and monitoring capability\n• GPS tracking for mobile patrols\n• Client portal access to reports and alerts\n• Integration with property management systems\n\nTechnology minimizes human error, provides accountability, and gives you visibility into actual security operations. A company relying solely on manual logbooks in 2025 is outdated.' },
+        { heading: '6. Local Knowledge and Experience', body: 'San Antonio has specific security needs.\n\nThe best providers understand:\n• Local crime patterns and high-risk areas\n• San Antonio building codes and parking structure vulnerabilities\n• Seasonal risks (events, conventions, flooding)\n• Local law enforcement relationships\n• Property-specific challenges (highway access, industrial areas, mixed-use buildings)\n\nAsk candidates: "What do you know about security challenges in this part of San Antonio?" Their answer will tell you if they\'ve worked in your area or if they\'re cookie-cutter.' },
+        { heading: '7. Customization and Flexibility', body: 'Every property is different.\n\nWatch out for companies with rigid, one-size-fits-all packages. Your security needs at a downtown office building differ drastically from a suburban industrial park or residential complex.\n\nA good provider:\n• Conducts a vulnerability assessment before quoting\n• Tailors staffing and hours to your actual risk profile\n• Scales services up or down based on tenant demand\n• Offers both armed and unarmed options\n• Provides mobile patrol, stationary guard, and hybrid models' },
+        { heading: '8. Transparency and Communication', body: 'You should know what\'s happening on your property.\n\nEvaluate how quickly they:\n• Return calls and emails\n• Provide incident reports\n• Share performance metrics\n• Address concerns\n• Communicate with tenants when needed\n\nRequest a sample incident report and communication protocol. Some companies provide weekly summaries; others quarterly. Know what you\'re getting.' },
+        { heading: '9. References and Track Record', body: 'Talk to other property managers.\n\nAsk for:\n• At least 3 references from similar-sized properties (office, industrial, residential)\n• How long they\'ve served each reference\n• Any incidents and how they were handled\n• Overall satisfaction and renewal rates\n\nCall these references. Ask specifically: "If a serious incident occurred, would you trust this company to respond professionally?"' },
+        { heading: '10. Cost vs. Value', body: 'Price should be the last decision factor, not the first.\n\nA $3/hour guard and an $8/hour guard are not the same product. That $5/hour difference often reflects training, oversight, technology, and reliability.\n\nCompare:\n• Hourly rates\n• Minimum contract terms\n• What\'s included (equipment, uniforms, incident reports, etc.)\n• Cancellation policies\n• Surge pricing for events or peak times' },
+        { heading: 'What to Avoid', body: '• Pushy sales tactics — Legitimate companies let the work speak for itself\n• Vague licensing claims — If they can\'t clearly explain their licensing, they might not have it\n• "We\'ll figure it out on site" — Security needs planning, not improvisation\n• No written incident procedures — If they don\'t have documented protocols, they\'re winging it\n• Reluctance to provide references — This is a massive red flag' },
+        { heading: 'Making the Final Decision', body: 'Schedule meetings with your top 2–3 candidates. Ask the questions above. Trust your instincts about their professionalism and responsiveness. Request a 30-day trial if possible — you\'ll quickly see if the reality matches their promises.\n\nRemember: You\'re not just hiring guards. You\'re transferring responsibility for tenant safety, asset protection, and liability management to an external team. Choose accordingly.' },
+      ]
     },
     {
-      title: 'Understanding Texas Security License Requirements',
+      id: 'campus-security-best-practices',
+      title: 'Campus Security Best Practices for San Antonio Schools',
       date: 'April 2025',
-      summary: 'Texas has strict licensing requirements for security professionals. Here\'s what employers and guards need to know about DPS licensing, training hours, and renewals.',
-      tag: 'Compliance'
+      tag: 'Campus Security',
+      summary: 'Campus security has never been more complex. Schools must balance student safety, parental peace of mind, federal compliance, and budget constraints. This guide outlines evidence-based security practices that work for San Antonio schools and institutions.',
+      sections: [
+        { heading: 'Introduction', body: 'Campus security has never been more complex. Schools today must balance student safety, parental peace of mind, federal compliance requirements, and budget constraints. A school shooting anywhere is a school shooting everywhere — the responsibility to maintain a safe learning environment has become a defining operational priority.\n\nThis guide outlines evidence-based security practices that work for San Antonio schools and institutions.' },
+        { heading: '1. Comprehensive Threat Assessment', body: 'You can\'t secure what you haven\'t assessed.\n\nStart with a professional security audit that evaluates:\n• All entry and exit points\n• Blind spots in hallways, parking areas, and grounds\n• Access control vulnerabilities\n• Emergency communication gaps\n• Current staff training and protocols\n• Historical incidents and patterns\n\nThis assessment becomes your security roadmap. Without it, you\'re making educated guesses rather than data-driven decisions.\n\nSan Antonio-specific consideration: Schools in flood-prone areas need emergency evacuation plans that account for water access. Schools near major highways need perimeter security that limits unauthorized vehicle access.' },
+        { heading: '2. Layered Access Control', body: 'One lock is never enough.\n\nImplement multiple entry points with increasing security:\n• Outer perimeter: Fence or barrier to prevent unauthorized vehicle access to parking and drop-off zones\n• Building entrance: Single controlled point during school hours; ID verification system\n• Interior doors: Card access to sensitive areas (offices, labs, storage); emergency exit capability for quick evacuation\n• Visitor management: Sign-in procedures; photo ID verification; escort requirements\n\nModern schools use badge readers, RFID systems, or mobile app-based access. The key is that every person on campus is accounted for and every space has controlled access.' },
+        { heading: '3. Security Camera Coverage (CCTV)', body: 'Cameras serve two purposes: prevention and investigation.\n\nStrategic placement should cover:\n• All entry/exit points\n• Parking areas and bus zones\n• Hallways (primary throughways and corners)\n• Cafeteria, gym, and common areas\n• Perimeter and outdoor spaces\n• Server rooms and sensitive technology areas\n\nMinimum specifications:\n• 1080p resolution (higher is better)\n• 24/7 recording with 30+ days of retention\n• Night vision capability\n• Cloud backup (protects against on-site equipment failure)\n• Central monitoring dashboard for rapid incident response\n\nImportant: Check local school board policies and Texas education code regarding camera placement in bathrooms and locker rooms. Most districts have explicit restrictions. Consult legal counsel before installation.' },
+        { heading: '4. Visitor and Contractor Management', body: 'Most school security breaches involve someone who had legitimate reason to be there.\n\nImplement:\n• Visitor sign-in protocol — Photo ID, purpose, duration, escorted access\n• Background checks for contractors — Anyone with repeated access (HVAC, cleaning, IT vendors)\n• Parking restrictions — Visitors park in designated areas visible to staff\n• Delivery procedures — Packages screened, dropped at main entrance, not delivered internally\n• Contractor badges — Visible identification while on campus' },
+        { heading: '5. Threat Assessment and Early Warning Systems', body: 'Prevention is infinitely better than response.\n\nDevelop a formal threat assessment protocol:\n• Designated threat assessment team — Principal, counselor, security officer, district office representative\n• Student reporting channels — Anonymous hotlines, trusted adult relationships, peer reporting\n• Staff training — Recognizing warning signs (social isolation, violent language, access to weapons)\n• Law enforcement partnership — Regular coordination with San Antonio PD; clear escalation protocols\n• Mental health integration — School counselors and external resources for at-risk students\n\nEarly intervention prevents most threats before they materialize.' },
+        { heading: '6. Emergency Response Planning', body: 'Every minute matters in a crisis.\n\nYour school needs:\n• Detailed lockdown procedures — Clear communication, classroom protocols, special education considerations\n• Evacuation routes — Multiple exits, designated assembly areas, accountability procedures\n• Medical response — Staff trained in first aid, AED locations, emergency medical access\n• Parent communication — Rapid notification system, reunion procedures, counseling resources\n• After-incident support — Trauma counseling, staff debriefing, transparent communication\n\nCritical: Practice these procedures quarterly. Drills should be realistic enough that students and staff treat them seriously, but clearly labeled as drills to avoid psychological stress.' },
+        { heading: '7. Professional Security Personnel on Campus', body: 'Consider a full-time School Resource Officer (SRO) or security officer.\n\nOptions include:\n• San Antonio PD SRO — Law enforcement officer, works with district, covered by city training and standards\n• Contract security officer — Professional trained in school environments, familiar with your specific campus\n• Hybrid model — SRO for law enforcement response, contract officer for daily presence and prevention\n\nThe presence of a trained security professional:\n• Deters would-be threats\n• Provides immediate incident response capability\n• Builds relationships with students (trust improves reporting)\n• Helps coordinate emergency procedures\n• Provides accountability during critical moments' },
+        { heading: '8. Communication Systems', body: 'When seconds count, communication systems save lives.\n\nImplement:\n• Internal PA system — Clear, audible announcements throughout buildings\n• Mass notification system — Rapid parent/guardian alerts via text, email, phone\n• Two-way radios — For staff coordination during incidents\n• Mobile app — Real-time updates to parents and community\n• Backup communication — What happens when power or internet fails?\n\nTest these systems quarterly and ensure all staff understand activation procedures.' },
+        { heading: '9. Parking Lot and Transportation Security', body: 'Students spend substantial time in parking areas and on buses.\n\nSecurity measures:\n• Parking lot patrols — Walking or vehicle-based, random timing\n• Student ID verification — For parking lot access (prevents open public access)\n• Drop-off and pick-up procedures — Single-file flow, visual accountability, no unattended students\n• Bus security — Background-checked drivers, communication systems, GPS tracking\n• After-school activity security — Extended hours, reduced staffing — increase supervision proportionally' },
+        { heading: '10. Staff Training and Culture', body: 'Your security plan is only as good as your staff\'s ability to execute it.\n\nEvery staff member should receive:\n• Initial orientation — Campus security plan overview, emergency procedures, their role\n• Annual refresher training — Updates to procedures, new threats, lessons learned\n• Specialized training — Security personnel receive advanced training in threat assessment, de-escalation, incident response\n• Drills and exercises — Hands-on practice with actual procedures\n\nBeyond training, foster a security culture:\n• Empowerment to report concerns\n• Clear communication from administration\n• Acknowledgment that security is everyone\'s responsibility\n• Recognition of threat reporting and early intervention efforts' },
+        { heading: 'Special Considerations for San Antonio Schools', body: 'San Antonio has unique geographic and demographic factors:\n\n• Military family demographics — Highly aware of security protocols; may have expertise that assists threat assessment\n• Large campus sizes — Many San Antonio schools cover significant acreage; perimeter control and response times are critical\n• Flood risks — Spring and summer flooding affects evacuation routes and emergency access\n• Bilingual communication — Emergency notifications should be available in Spanish for families with limited English proficiency\n• Traffic patterns — Heavy morning and afternoon traffic near schools; traffic control during evacuations is essential' },
+        { heading: 'Common Mistakes to Avoid', body: '• Reactive rather than proactive — Waiting for an incident to improve security instead of planning ahead\n• Over-reliance on one person — If your security depends entirely on one trusted individual, you\'re vulnerable when they\'re absent\n• Assuming it won\'t happen here — Statistics show it can happen anywhere. Assume it\'s possible, plan accordingly\n• Treating security as a cost rather than investment — The cost of a security incident vastly exceeds the cost of prevention\n• Failing to drill — Plans that aren\'t practiced don\'t work under stress\n• Ignoring mental health — Most school security incidents involve students with warning signs that were missed or unreported' },
+        { heading: 'Getting Started', body: 'Campus security is an ongoing commitment, not a one-time project. The schools that maintain the safest environments treat security as a core institutional value.\n\n1. Conduct a professional threat assessment — Hire an external security consultant to evaluate your campus objectively\n2. Assemble a threat assessment team — Meet monthly to discuss concerns and coordinate prevention efforts\n3. Review and update your emergency plan — Make sure everyone knows their role\n4. Schedule comprehensive drills — Lockdown, evacuation, medical emergency, and active threat responses\n5. Train and educate — Staff, students, parents, and community\n6. Communicate transparently — Let your community know you take safety seriously' },
+      ]
     },
     {
-      title: 'Active Shooter Response: What Every Business Should Know',
+      id: 'property-security-vulnerabilities',
+      title: 'Property Security Vulnerabilities in San Antonio: What You Need to Know',
       date: 'March 2025',
-      summary: 'Active shooter incidents are on the rise. We cover the Run-Hide-Fight framework, how to train your staff, and why professional security training saves lives.',
-      tag: 'Safety Training'
-    }
+      tag: 'Property Security',
+      summary: 'San Antonio property managers handle millions of dollars in assets and bear the legal responsibility if those assets are compromised. This article identifies the 10 most common security vulnerabilities we see across San Antonio commercial properties and the practical steps to address them.',
+      sections: [
+        { heading: 'Introduction', body: 'San Antonio property managers handle millions of dollars in assets and bear the legal responsibility if those assets are compromised. Yet many properties operate with outdated security practices, leaving them exposed to theft, vandalism, liability claims, and operational disruptions.\n\nThis article identifies the 10 most common security vulnerabilities we see across San Antonio commercial properties and the practical steps to address them.' },
+        { heading: '1. Inadequate Perimeter Control', body: 'Your first line of defense is controlling who (and what) enters your property.\n\nCommon vulnerabilities:\n• Open parking lots with multiple unmonitored entrances\n• No gates or barriers on ground-level access\n• Landscaping that provides cover for trespassers\n• Delivery areas without controlled access\n• Construction or maintenance zones that blend into public areas\n\nSolutions:\n• Install gates or bollards at vehicle access points\n• Trim landscaping at building perimeter (eliminate hiding spots)\n• Designate separate delivery zones with controlled, monitored access\n• Mark public vs. private areas clearly with signage\n• Conduct regular perimeter walks to identify new vulnerabilities' },
+        { heading: '2. Ineffective Access Control Systems', body: 'Knowing who\'s in your building is fundamental.\n\nProblems:\n• Expired credentials still grant access (badges never deactivated)\n• "Propped" doors that bypass electronic locks\n• Shared access codes among multiple users\n• No audit trail of who accessed which areas when\n• Legacy locks on sensitive areas (no digital record)\n\nSolutions:\n• Implement badge reader systems with access logs\n• Deactivate credentials immediately when employees/contractors depart\n• Assign unique codes to individuals; change codes when employees leave\n• Audit access logs monthly for unusual patterns\n• Upgrade legacy locks to modern systems' },
+        { heading: '3. Inadequate Surveillance Coverage', body: 'Cameras are your documentary record.\n\nGaps we frequently see:\n• Cameras covering the "nice" areas but missing blind spots\n• Low-resolution footage that doesn\'t capture identifying details\n• Short retention periods (7–14 days) that miss investigation opportunities\n• No backup system — equipment failure means zero footage\n• No one actually monitoring feeds in real time\n\nSolutions:\n• Conduct a professional camera placement audit\n• Install high-resolution (1080p minimum) cameras at all entry/exit points\n• Maintain 30+ days of storage (or longer based on insurance requirements)\n• Use cloud backup to protect against equipment failure\n• Monitor key areas during high-risk periods (nights, weekends, peak times)' },
+        { heading: '4. Poor Lighting', body: 'Darkness is a criminal\'s best friend.\n\nVulnerabilities:\n• Burned-out lights in parking areas\n• Dark corners around building perimeter\n• Inconsistent lighting that creates shadows\n• No lighting schedule (entire lot lit 24/7, or some areas never lit)\n• Lights that draw attention to entry points rather than deterring approach\n\nSolutions:\n• Install motion-activated lighting in lower-traffic areas\n• Use consistent, bright lighting (LED, 4000K color temperature) at building entrances and parking areas\n• Light the perimeter in a way that makes unauthorized approach visible\n• Trim trees and landscaping that create shadows\n• Audit lighting monthly; replace burned-out bulbs within 48 hours' },
+        { heading: '5. Weak Visitor and Contractor Management', body: 'Most internal threats have legitimate access.\n\nGaps:\n• Visitors freely roaming without escorting\n• Contractors with permanent access keys (not deactivated when projects end)\n• No background checks for repeat vendors\n• Unclear sign-in procedures; poor enforcement\n• No restrictions on what areas visitors can access\n\nSolutions:\n• Require all visitors to sign in at main entrance with photo ID\n• Verify purpose and duration of visit\n• Escort visitors to their destination (no self-guided access)\n• Issue temporary badges; collect before departure\n• Conduct background checks on any contractor with regular access\n• Create a vendor management system with contact info, insurance, background clearance' },
+        { heading: '6. Inadequate Incident Reporting', body: 'If it\'s not documented, it didn\'t happen — from a legal standpoint.\n\nCommon problems:\n• Incidents reported verbally, never documented\n• Incident reports that lack critical details (time, description, follow-up)\n• No standardized reporting procedure\n• Reports filed but never reviewed\n• Management unaware of emerging patterns (repeated theft, unauthorized access, etc.)\n\nSolutions:\n• Implement a digital incident reporting system\n• Train all staff on what constitutes a reportable incident\n• Require detailed documentation: date, time, description, individuals involved, actions taken, follow-up\n• Review incidents weekly to identify patterns\n• Share summary reports with building managers and ownership' },
+        { heading: '7. Neglected Emergency Response Planning', body: 'Hoping you won\'t need an emergency plan is not a plan.\n\nVulnerabilities:\n• No written emergency procedures\n• Staff unaware of evacuation routes or assembly areas\n• Medical equipment (AED) deployed but staff not trained\n• No communication protocol for notifying authorities, management, occupants\n• Power outage scenarios not addressed\n\nSolutions:\n• Develop comprehensive emergency procedures for fire, medical, active threat, hazmat, weather\n• Post evacuation routes and assembly areas visibly\n• Train all staff on their role during emergencies; conduct annual drills\n• Maintain AED equipment and train staff on operation\n• Test communication systems quarterly' },
+        { heading: '8. Insufficient Staffing or Staffing Gaps', body: 'Unmanned buildings at night or weekends are easy targets.\n\nIssues:\n• Night shift security absent or inadequately trained\n• Gaps between shift changes (30–60 minutes unmonitored)\n• Single-person shifts with no backup for breaks or emergencies\n• Security staff with insufficient authority to prevent unauthorized access\n• Cleaning and maintenance crews unsupervised\n\nSolutions:\n• Assess your property\'s actual risk profile and schedule appropriate staffing\n• Eliminate shift gaps; stagger schedules to ensure continuous coverage\n• Maintain supervisory presence for high-risk periods\n• Equip security staff with authority and training to enforce access policies\n• Supervise or monitor cleaning/maintenance crews, especially in sensitive areas' },
+        { heading: '9. Outdated Technology Integration', body: 'Modern security systems should work together, not in silos.\n\nProblems:\n• Access control, CCTV, and alarm systems that don\'t communicate\n• No integration with property management systems\n• Alert systems that send notifications to inboxes that no one monitors\n• Manual processes (keycards, logbooks) instead of digital systems\n• Inability to correlate events across systems during investigations\n\nSolutions:\n• Implement integrated security platform that connects access control, CCTV, alarms, and alerts\n• Use real-time notification systems for critical events\n• Digitize all processes (visitor management, incident reporting, access logs)\n• Create unified dashboard for security personnel to monitor all systems\n• Regular software updates and system maintenance' },
+        { heading: '10. Inadequate Staff Training and Security Awareness', body: 'Your staff is either your security asset or liability.\n\nGaps:\n• Minimal or no security training for most staff\n• No awareness of threat reporting procedures\n• Staff unaware of security policies (badge protocol, visitor escort requirements, etc.)\n• Complacency — "we\'ve never had an incident"\n• No culture of security responsibility\n\nSolutions:\n• Conduct mandatory security orientation for all new employees\n• Provide annual refresher training covering policies and procedures\n• Create clear, simple reporting channels for security concerns\n• Empower staff to report unusual activity without fear of being "wrong"\n• Leadership communication that emphasizes security as a core value\n• Recognize and acknowledge staff who report concerns or prevent incidents' },
+        { heading: 'Additional San Antonio Considerations', body: 'San Antonio\'s unique property landscape requires tailored security:\n\n• High-value industrial and manufacturing properties — Often located with limited perimeter control and valuable inventory\n• Multi-tenant office complexes — Hundreds of potential access points and shared responsibility for security\n• Hospitality and entertainment venues — Large transient populations requiring different threat models than office buildings\n• Properties near highways and airports — Increased vehicle-based security risks\n• Aging infrastructure — Many San Antonio properties have legacy security that needs modernization' },
+        { heading: 'The Bottom Line', body: 'Security vulnerabilities don\'t disappear if you ignore them. They accumulate. An incident that costs you $50,000 today (inventory loss, liability claim, downtime) could have been prevented with $5,000 in security improvements.\n\nThe properties that maintain the best safety records treat security as an ongoing operational commitment, invest appropriately, and measure results.\n\nYour tenants, your insurance company, and your bottom line will thank you.' },
+      ]
+    },
   ];
 
   const scrollToSection = (id) => {
@@ -579,6 +636,50 @@ export default function StarsPrivateInvestigations() {
         </div>
       )}
 
+      {/* BLOG ARTICLE DETAIL PAGE */}
+      {currentPage === 'home' && currentBlogPost && (() => {
+        const article = blogPosts.find(p => p.id === currentBlogPost);
+        if (!article) return null;
+        const renderBody = (text) => text.split('\n').map((line, i) => {
+          if (!line.trim()) return <br key={i} />;
+          const parts = line.split(/\*\*(.*?)\*\*/g);
+          const rendered = parts.map((part, j) => j % 2 === 1 ? <strong key={j}>{part}</strong> : part);
+          return <span key={i} className="block mb-1">{rendered}</span>;
+        });
+        return (
+          <section className="py-16 px-4 bg-white">
+            <div className="max-w-4xl mx-auto">
+              <button onClick={() => { setCurrentBlogPost(null); setTimeout(() => document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+                ← Back to Articles
+              </button>
+              <span className="text-xs font-semibold px-3 py-1 rounded text-white" style={{ backgroundColor: '#B8860B' }}>{article.tag}</span>
+              <p className="text-gray-400 text-sm mt-3 mb-2">{article.date}</p>
+              <h1 className="text-4xl font-bold mb-10 leading-tight" style={{ color: '#001F3F' }}>{article.title}</h1>
+              {article.sections.map((section, i) => (
+                <div key={i} className="mb-8">
+                  {section.heading !== 'Introduction' && (
+                    <h2 className="text-xl font-bold mb-3" style={{ color: '#001F3F' }}>{section.heading}</h2>
+                  )}
+                  <div className="text-gray-700 leading-relaxed">{renderBody(section.body)}</div>
+                </div>
+              ))}
+              <div className="mt-12 p-8 rounded-lg text-white text-center" style={{ background: 'linear-gradient(135deg, #001F3F 0%, #003d5c 100%)' }}>
+                <h3 className="text-2xl font-bold mb-3">Ready to Strengthen Your Security?</h3>
+                <p className="opacity-90 mb-6">Stars Private Investigations offers free security assessments for San Antonio property managers and businesses.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-lg font-semibold text-slate-900" style={{ backgroundColor: '#B8860B' }}>
+                    Book Free Assessment
+                  </a>
+                  <button onClick={() => { setCurrentBlogPost(null); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 100); }} className="border-2 px-8 py-3 rounded-lg font-semibold" style={{ borderColor: '#B8860B', color: '#B8860B' }}>
+                    Contact Us
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
       {/* CAREERS PAGE */}
       {currentPage === 'careers' && (
         <section className="py-16 px-4 bg-white">
@@ -875,8 +976,8 @@ export default function StarsPrivateInvestigations() {
       )}
 
       {/* HOME PAGE */}
-      {currentPage === 'home' && (
-        <>
+      {currentPage === 'home' && !currentBlogPost && (
+<>
           {/* Video Section */}
           <section className="py-8 px-4 bg-white">
             <div className="max-w-5xl mx-auto">
@@ -1074,8 +1175,8 @@ export default function StarsPrivateInvestigations() {
                       <p className="text-xs text-gray-400 mt-2 mb-3">{post.date}</p>
                       <h3 className="font-bold text-lg mb-3 leading-snug" style={{ color: '#001F3F' }}>{post.title}</h3>
                       <p className="text-gray-600 text-sm leading-relaxed">{post.summary}</p>
-                      <button onClick={() => scrollToSection('contact')} className="mt-4 flex items-center gap-1 text-sm font-semibold" style={{ color: '#B8860B' }}>
-                        Contact Us <ChevronRight className="w-4 h-4" />
+                      <button onClick={() => openArticle(post.id)} className="mt-4 flex items-center gap-1 text-sm font-semibold" style={{ color: '#B8860B' }}>
+                        Read Article <ChevronRight className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
