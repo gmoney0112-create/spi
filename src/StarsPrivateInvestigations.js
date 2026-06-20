@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MapPin, Clock, Shield, BookOpen, Star, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, Clock, Shield, BookOpen, Star, ChevronRight } from 'lucide-react';
 
 const FacebookIcon = () => (
   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -22,8 +22,18 @@ export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
   const [currentPage, setCurrentPage]           = useState('home');
 
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+    const hashMap = { home: '', assessment: '#assessment', '21angels': '#21angels', about: '#about', careers: '#careers', privacy: '#privacy', terms: '#terms' };
+    window.location.hash = hashMap[page] ?? '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
+
   useEffect(() => {
-    if (window.location.hash === '#assessment') setCurrentPage('assessment');
+    const hashPageMap = { '#assessment': 'assessment', '#21angels': '21angels', '#about': 'about', '#careers': 'careers', '#privacy': 'privacy', '#terms': 'terms' };
+    const page = hashPageMap[window.location.hash];
+    if (page) setCurrentPage(page);
   }, []);
   const [bannerDismissed, setBannerDismissed]   = useState(false);
   const [formData, setFormData]                 = useState({ name: '', email: '', phone: '', service: '', message: '' });
@@ -89,14 +99,36 @@ export default function StarsPrivateInvestigations() {
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
     if (currentPage !== 'home') {
-      setCurrentPage('home');
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 150);
+      navigateTo('home');
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 200);
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleFormChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleAssessmentFormSubmit = async () => {
+    if (!formData.email) {
+      setFormStatus('error');
+      return;
+    }
+    try {
+      const res = await fetch(`https://formspree.io/f/${CONTACT_FORM_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, service: 'Property Manager Assessment', name: formData.name || 'Property Manager Inquiry' })
+      });
+      if (res.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+      } else {
+        setFormStatus('fail');
+      }
+    } catch {
+      setFormStatus('fail');
+    }
+  };
 
   const handleFormSubmit = async () => {
     if (!formData.name || !formData.email || !formData.service) {
@@ -161,7 +193,7 @@ export default function StarsPrivateInvestigations() {
       {/* Header/Navigation */}
       <header className="text-white sticky top-0 z-50" style={{ backgroundColor: '#001F3F' }}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 cursor-pointer">
+          <button onClick={() => navigateTo('home')} className="flex items-center gap-3 cursor-pointer">
             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#B8860B' }}>
               <Star className="w-6 h-6 text-white fill-white" />
             </div>
@@ -174,9 +206,9 @@ export default function StarsPrivateInvestigations() {
           <nav className="hidden md:flex gap-8">
             <button onClick={() => scrollToSection('services')} className="hover:text-yellow-400 transition">Services</button>
             <button onClick={() => scrollToSection('training')} className="hover:text-yellow-400 transition">Training</button>
-            <button onClick={() => setCurrentPage('about')} className="hover:text-yellow-400 transition">About</button>
+            <button onClick={() => navigateTo('about')} className="hover:text-yellow-400 transition">About</button>
             <button onClick={() => scrollToSection('contact')} className="hover:text-yellow-400 transition">Contact</button>
-            <button onClick={() => setCurrentPage('21angels')} className="px-3 py-1 rounded font-semibold transition text-white" style={{ backgroundColor: '#7B2D8B' }}>21 Angels</button>
+            <button onClick={() => navigateTo('21angels')} className="px-3 py-1 rounded font-semibold transition text-white" style={{ backgroundColor: '#7B2D8B' }}>21 Angels</button>
           </nav>
 
           <a href={`tel:2106379061`} className="hidden md:flex items-center gap-2 px-4 py-2 rounded" style={{ backgroundColor: '#B8860B' }}>
@@ -193,9 +225,9 @@ export default function StarsPrivateInvestigations() {
           <div className="md:hidden bg-slate-800 px-4 py-4 space-y-3">
             <button onClick={() => scrollToSection('services')} className="block w-full text-left hover:text-yellow-400">Services</button>
             <button onClick={() => scrollToSection('training')} className="block w-full text-left hover:text-yellow-400">Training</button>
-            <button onClick={() => { setCurrentPage('about'); setMobileMenuOpen(false); }} className="block w-full text-left hover:text-yellow-400">About</button>
+            <button onClick={() => navigateTo('about')} className="block w-full text-left hover:text-yellow-400">About</button>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left hover:text-yellow-400">Contact</button>
-            <button onClick={() => { setCurrentPage('21angels'); setMobileMenuOpen(false); }} className="block w-full text-left font-semibold" style={{ color: '#c084d4' }}>21 Angels</button>
+            <button onClick={() => navigateTo('21angels')} className="block w-full text-left font-semibold" style={{ color: '#c084d4' }}>21 Angels</button>
             <a href="tel:2106379061" className="block w-full text-left hover:text-yellow-400 font-semibold" style={{ color: '#B8860B' }}>(210) 637-9061</a>
           </div>
         )}
@@ -215,7 +247,7 @@ export default function StarsPrivateInvestigations() {
       {currentPage === 'privacy' && (
         <section className="py-16 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
-            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+            <button onClick={() => navigateTo('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
               ← Back to Home
             </button>
             <h1 className="text-4xl font-bold mb-2" style={{ color: '#001F3F' }}>Privacy Policy</h1>
@@ -274,7 +306,7 @@ export default function StarsPrivateInvestigations() {
             ))}
 
             <div className="mt-10 text-center">
-              <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
+              <button onClick={() => navigateTo('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
                 Return to Home
               </button>
             </div>
@@ -286,7 +318,7 @@ export default function StarsPrivateInvestigations() {
       {currentPage === 'terms' && (
         <section className="py-16 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
-            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+            <button onClick={() => navigateTo('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
               ← Back to Home
             </button>
             <h1 className="text-4xl font-bold mb-2" style={{ color: '#001F3F' }}>Terms of Service</h1>
@@ -349,7 +381,7 @@ export default function StarsPrivateInvestigations() {
             ))}
 
             <div className="mt-10 text-center">
-              <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
+              <button onClick={() => navigateTo('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
                 Return to Home
               </button>
             </div>
@@ -529,7 +561,7 @@ export default function StarsPrivateInvestigations() {
                 Make a Donation Today
               </a>
               <div className="mt-6">
-                <button onClick={() => setCurrentPage('home')} className="text-purple-300 hover:text-white underline text-sm transition">
+                <button onClick={() => navigateTo('home')} className="text-purple-300 hover:text-white underline text-sm transition">
                   ← Return to Stars Private Investigations
                 </button>
               </div>
@@ -540,7 +572,7 @@ export default function StarsPrivateInvestigations() {
           <footer className="py-8 px-4 text-gray-400 text-center" style={{ backgroundColor: '#0a0014' }}>
             <p className="text-sm">&copy; {new Date().getFullYear()} 21 Angels Strong. All rights reserved.</p>
             <p className="text-xs mt-1 opacity-60">501(c)(3) Nonprofit Organization | Donations may be tax-deductible as allowed by law.</p>
-            <button onClick={() => setCurrentPage('home')} className="mt-3 text-xs hover:text-white underline transition">
+            <button onClick={() => navigateTo('home')} className="mt-3 text-xs hover:text-white underline transition">
               starsprivatei.com
             </button>
           </footer>
@@ -551,7 +583,7 @@ export default function StarsPrivateInvestigations() {
       {currentPage === 'careers' && (
         <section className="py-16 px-4 bg-white">
           <div className="max-w-3xl mx-auto">
-            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+            <button onClick={() => navigateTo('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
               ← Back to Home
             </button>
             <h1 className="text-4xl font-bold text-center mb-4" style={{ color: '#001F3F' }}>Join Our Team</h1>
@@ -618,7 +650,7 @@ export default function StarsPrivateInvestigations() {
       {currentPage === 'about' && (
         <section className="py-16 px-4 bg-white">
           <div className="max-w-5xl mx-auto">
-            <button onClick={() => setCurrentPage('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
+            <button onClick={() => navigateTo('home')} className="mb-6 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition text-gray-800">
               ← Back to Home
             </button>
             <h1 className="text-4xl font-bold text-center mb-12" style={{ color: '#001F3F' }}>About Our Founder</h1>
@@ -672,7 +704,7 @@ export default function StarsPrivateInvestigations() {
             </div>
 
             <div className="text-center">
-              <button onClick={() => setCurrentPage('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
+              <button onClick={() => navigateTo('home')} className="px-8 py-3 rounded-lg font-semibold text-white" style={{ backgroundColor: '#B8860B' }}>
                 Return to Home
               </button>
             </div>
@@ -817,7 +849,7 @@ export default function StarsPrivateInvestigations() {
                 />
               </div>
               <button
-                onClick={handleFormSubmit}
+                onClick={handleAssessmentFormSubmit}
                 className="mt-3 w-full max-w-lg mx-auto block py-3 rounded-lg font-bold text-slate-900 text-lg"
                 style={{ backgroundColor: '#B8860B' }}
               >
@@ -835,7 +867,7 @@ export default function StarsPrivateInvestigations() {
           {/* Footer */}
           <footer className="py-6 px-4 text-center text-gray-400 text-sm" style={{ backgroundColor: '#0a1929' }}>
             <p>&copy; {new Date().getFullYear()} Stars Private Investigations | Licensed & Bonded #C00444101 | San Antonio, TX</p>
-            <button onClick={() => { setCurrentPage('home'); window.location.hash = ''; }} className="mt-2 underline hover:text-white transition">
+            <button onClick={() => navigateTo('home')} className="mt-2 underline hover:text-white transition">
               Return to Main Site
             </button>
           </footer>
@@ -860,7 +892,7 @@ export default function StarsPrivateInvestigations() {
               </div>
 
               {/* Additional Videos - 16:9 responsive grid */}
-              <div className="grid md:grid-cols-3 gap-6 mt-6">
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {[
                   { id: 'qLv9D4LvZTs', title: 'Stars Private Investigations Video 2' },
                   { id: 'AKPT2PCHl0w', title: 'Stars Private Investigations Video 3' },
@@ -1148,7 +1180,7 @@ export default function StarsPrivateInvestigations() {
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
-                        <Phone className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#B8860B' }} />
+                        <Mail className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#B8860B' }} />
                         <div>
                           <p className="font-semibold">Email</p>
                           <a href="mailto:spitx06@gmail.com" className="hover:underline">spitx06@gmail.com</a>
@@ -1211,11 +1243,11 @@ export default function StarsPrivateInvestigations() {
 
               <div className="text-center">
                 <div className="flex flex-wrap justify-center gap-6 mb-4">
-                  <button onClick={() => setCurrentPage('privacy')} className="hover:text-white transition">Privacy Policy</button>
-                  <button onClick={() => setCurrentPage('terms')} className="hover:text-white transition">Terms of Service</button>
+                  <button onClick={() => navigateTo('privacy')} className="hover:text-white transition">Privacy Policy</button>
+                  <button onClick={() => navigateTo('terms')} className="hover:text-white transition">Terms of Service</button>
                   <button className="hover:text-white transition">Certifications</button>
-                  <button onClick={() => setCurrentPage('careers')} className="hover:text-white transition">Careers</button>
-                  <button onClick={() => setCurrentPage('about')} className="hover:text-white transition">About</button>
+                  <button onClick={() => navigateTo('careers')} className="hover:text-white transition">Careers</button>
+                  <button onClick={() => navigateTo('about')} className="hover:text-white transition">About</button>
                 </div>
                 <p className="text-sm">&copy; {new Date().getFullYear()} Stars Private Investigations. All rights reserved.</p>
                 <p className="text-xs mt-1 opacity-60">Veteran-Owned &amp; Operated | Serving San Antonio, Eagle Pass &amp; South Texas</p>
