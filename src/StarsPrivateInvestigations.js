@@ -17,6 +17,7 @@ const CAREER_FORM_ID  = 'xojzlogq';
 // Replace with your Stripe donation link
 const STRIPE_DONATE_URL = 'https://donate.stripe.com/REPLACE_WITH_YOUR_LINK';
 const CALENDLY_URL = 'https://calendly.com/spitxadmin/30min';
+const DROPBOX_URL = 'https://www.dropbox.com/scl/fo/s0dabx0nkd0omyqv014lh/AJTzVaek2dFqsj-fKRCNRwk?rlkey=dtppdegojq302rejrpkws8pl9&st=93s494qs&dl=0';
 
 export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
@@ -1563,6 +1564,48 @@ export default function StarsPrivateInvestigations() {
                 >
                   <Phone className="w-4 h-4" /> Call (210) 637-9061
                 </a>
+              </div>
+            </div>
+          </section>
+
+          {/* File Submission Section */}
+          <section id="submit-files" className="py-16 px-4 bg-white">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6" style={{ backgroundColor: '#001F3F' }}>
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+              </div>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: '#001F3F' }}>Submit Files & Documents</h2>
+              <p className="text-gray-600 text-lg mb-4 max-w-2xl mx-auto">
+                Need to share photos, videos, documents, or evidence with our team? Use our secure file drop to send us files directly — no email attachment limits, no hassle.
+              </p>
+              <p className="text-gray-500 text-sm mb-10">Accepted: photos, videos, PDFs, documents, and other media files.</p>
+              <a
+                href={DROPBOX_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-xl text-white shadow-lg hover:opacity-90 transition mb-6"
+                style={{ backgroundColor: '#0061FF' }}
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L6 6.5 12 11 6 15.5 12 20l6-4.5L12 11l6-4.5L12 2zm0 0L18 6.5 12 11 18 15.5 12 20" />
+                  <path d="M6 6.5L12 11 6 15.5 0 11 6 6.5zm12 0L24 11l-6 4.5L12 11l6-4.5zM6 20l6-4.5 6 4.5-6 3-6-3z" />
+                </svg>
+                Open File Drop Box
+              </a>
+              <div className="grid md:grid-cols-3 gap-6 mt-10 text-left">
+                {[
+                  { icon: '🔒', title: 'Secure', desc: 'Files go directly to our team. Your submissions are private and protected.' },
+                  { icon: '📁', title: 'Any File Type', desc: 'Photos, videos, PDFs, Word docs — we accept all common file formats.' },
+                  { icon: '⚡', title: 'Instant Delivery', desc: 'Files arrive with our team immediately. No waiting, no email delays.' },
+                ].map((item, i) => (
+                  <div key={i} className="p-5 rounded-lg border-2" style={{ borderColor: '#e5e7eb' }}>
+                    <div className="text-2xl mb-2">{item.icon}</div>
+                    <h3 className="font-bold mb-1" style={{ color: '#001F3F' }}>{item.title}</h3>
+                    <p className="text-gray-600 text-sm">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
