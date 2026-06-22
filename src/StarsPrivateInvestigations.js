@@ -1337,7 +1337,7 @@ export default function StarsPrivateInvestigations() {
               {/* Main featured video - 16:9 responsive */}
               <div className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                 <iframe
-                  src="https://www.youtube.com/embed/SVd0o30yc6s?autoplay=1&rel=0"
+                  src="https://www.youtube.com/embed/65ljU5CaLbU?autoplay=1&rel=0"
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
@@ -1348,8 +1348,8 @@ export default function StarsPrivateInvestigations() {
               {/* Additional Videos - 16:9 responsive grid */}
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {[
-                  { id: 'qLv9D4LvZTs', title: 'Stars Private Investigations Video 2' },
-                  { id: 'AKPT2PCHl0w', title: 'Stars Private Investigations Video 3' },
+                  { id: 'BbYQQGKil3o', title: 'Stars Private Investigations Video 2' },
+                  { id: 'jCiL7ckxPCA', title: 'Stars Private Investigations Video 3' },
                 ].map((v) => (
                   <div key={v.id} className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                     <iframe
