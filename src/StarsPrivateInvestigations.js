@@ -17,7 +17,7 @@ const CAREER_FORM_ID  = 'xojzlogq';
 // Replace with your Stripe donation link
 const STRIPE_DONATE_URL = 'https://donate.stripe.com/REPLACE_WITH_YOUR_LINK';
 const CALENDLY_URL = 'https://calendly.com/spitxadmin/30min';
-const DROPBOX_URL = 'https://www.dropbox.com/scl/fo/s0dabx0nkd0omyqv014lh/AJTzVaek2dFqsj-fKRCNRwk?rlkey=dtppdegojq302rejrpkws8pl9&st=93s494qs&dl=0';
+const DROPBOX_URL = 'https://www.dropbox.com/request/5c4hefb9ce3fdp7sohf2';
 
 export default function StarsPrivateInvestigations() {
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
