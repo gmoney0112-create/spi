@@ -15,7 +15,7 @@ const CONTACT_FORM_ID = 'mzdqvlln';
 const CAREER_FORM_ID  = 'xojzlogq';
 
 // Replace with your Stripe donation link
-const STRIPE_DONATE_URL = 'https://donate.stripe.com/REPLACE_WITH_YOUR_LINK';
+const STRIPE_DONATE_URL = 'https://buy.stripe.com/5kQ7sN2E8bkB0Lq3Or0Ny00';
 const CALENDLY_URL = 'https://calendly.com/spitxadmin/30min';
 const DROPBOX_URL = 'https://www.dropbox.com/request/5c4hefb9ce3fdp7sohf2';
 
