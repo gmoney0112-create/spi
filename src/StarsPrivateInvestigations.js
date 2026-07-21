@@ -20,17 +20,23 @@ const CALENDLY_URL = 'https://calendly.com/spitxadmin/30min';
 const DROPBOX_URL = 'https://www.dropbox.com/request/5c4hefb9ce3fdp7sohf2';
 
 export default function StarsPrivateInvestigations() {
+  const isAngelsDomain = typeof window !== 'undefined' && window.location.hostname.includes('21angelsstrong');
   const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
-  const [currentPage, setCurrentPage]           = useState('home');
+  const [currentPage, setCurrentPage]           = useState(isAngelsDomain ? '21angels' : 'home');
   const [currentBlogPost, setCurrentBlogPost]   = useState(null);
   const [currentService, setCurrentService]     = useState(null);
 
   const navigateTo = (page) => {
+    if (isAngelsDomain && page === 'home') {
+      // On the 21 Angels domain, "home" means the Stars main site
+      window.location.href = 'https://www.starsprivatei.com';
+      return;
+    }
     setCurrentPage(page);
     setCurrentBlogPost(null);
     setCurrentService(null);
     const hashMap = { home: '', assessment: '#assessment', '21angels': '#21angels', about: '#about', careers: '#careers', privacy: '#privacy', terms: '#terms' };
-    window.location.hash = hashMap[page] ?? '';
+    window.location.hash = isAngelsDomain ? '' : (hashMap[page] ?? '');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setMobileMenuOpen(false);
   };
@@ -50,10 +56,14 @@ export default function StarsPrivateInvestigations() {
   };
 
   useEffect(() => {
+    if (isAngelsDomain) {
+      document.title = '21 Angels Strong | 501(c)(3) Nonprofit | Protecting Children & Schools';
+      return;
+    }
     const hashPageMap = { '#assessment': 'assessment', '#21angels': '21angels', '#about': 'about', '#careers': 'careers', '#privacy': 'privacy', '#terms': 'terms' };
     const page = hashPageMap[window.location.hash];
     if (page) setCurrentPage(page);
-  }, []);
+  }, [isAngelsDomain]);
   const [bannerDismissed, setBannerDismissed]   = useState(false);
   const [formData, setFormData]                 = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [careerForm, setCareerForm]             = useState({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
@@ -491,7 +501,7 @@ export default function StarsPrivateInvestigations() {
     <div className="w-full">
 
       {/* Free Consultation Banner */}
-      {!bannerDismissed && (
+      {!isAngelsDomain && !bannerDismissed && (
         <div className="text-white text-center py-2 px-4 text-sm flex items-center justify-center gap-3 relative" style={{ backgroundColor: '#B8860B' }}>
           <span>🎖️ Veteran-Owned Business — <strong>Free Security Consultation</strong> for New Clients in San Antonio &amp; South Texas</span>
           <button onClick={() => scrollToSection('contact')} className="underline font-semibold hover:opacity-80">Book Now</button>
@@ -502,6 +512,7 @@ export default function StarsPrivateInvestigations() {
       )}
 
       {/* Header/Navigation */}
+      {!isAngelsDomain && (
       <header className="text-white sticky top-0 z-50" style={{ backgroundColor: '#001F3F' }}>
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <button onClick={() => navigateTo('home')} className="flex items-center gap-3 cursor-pointer">
@@ -543,8 +554,10 @@ export default function StarsPrivateInvestigations() {
           </div>
         )}
       </header>
+      )}
 
       {/* Floating Call Now Button (mobile only) */}
+      {!isAngelsDomain && (
       <a
         href="tel:2106379061"
         className="fixed bottom-6 right-6 z-50 md:hidden flex items-center gap-2 px-5 py-3 rounded-full text-white font-semibold shadow-lg"
@@ -553,6 +566,7 @@ export default function StarsPrivateInvestigations() {
         <Phone className="w-5 h-5" />
         Call Now
       </a>
+      )}
 
       {/* PRIVACY POLICY PAGE */}
       {currentPage === 'privacy' && (
