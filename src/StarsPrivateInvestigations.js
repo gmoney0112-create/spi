@@ -723,9 +723,9 @@ export default function StarsPrivateInvestigations() {
             <div className="max-w-5xl mx-auto">
               <div className="rounded-lg overflow-hidden shadow-lg" style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
                 <iframe
-                  src="https://drive.google.com/file/d/16oa5OtxOuESxU1j9YqbrBg-Ihba7tkNc/preview?autoplay=1"
+                  src="https://www.youtube.com/embed/mZIkFTeO4P8?autoplay=1&rel=0"
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
-                  allow="autoplay; fullscreen"
+                  allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   title="21 Angels Strong Video"
                 />
