@@ -69,6 +69,8 @@ export default function StarsPrivateInvestigations() {
   const [careerForm, setCareerForm]             = useState({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
   const [formStatus, setFormStatus]             = useState('');
   const [careerStatus, setCareerStatus]         = useState('');
+  const [angelsForm, setAngelsForm]             = useState({ name: '', email: '', phone: '', message: '' });
+  const [angelsStatus, setAngelsStatus]         = useState('');
 
   const services = [
     { id: 'armed-security',         title: 'Armed Security Guards',          desc: 'Licensed armed officers providing maximum deterrence for high-risk properties and businesses.' },
@@ -497,6 +499,30 @@ export default function StarsPrivateInvestigations() {
     }
   };
 
+  const handleAngelsFormChange = (e) => setAngelsForm({ ...angelsForm, [e.target.name]: e.target.value });
+
+  const handleAngelsFormSubmit = async () => {
+    if (!angelsForm.name || !angelsForm.email) {
+      setAngelsStatus('error');
+      return;
+    }
+    try {
+      const res = await fetch(`https://formspree.io/f/${CONTACT_FORM_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...angelsForm, service: '21 Angels Strong Inquiry' })
+      });
+      if (res.ok) {
+        setAngelsStatus('success');
+        setAngelsForm({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setAngelsStatus('fail');
+      }
+    } catch {
+      setAngelsStatus('fail');
+    }
+  };
+
   return (
     <div className="w-full">
 
@@ -736,7 +762,7 @@ export default function StarsPrivateInvestigations() {
           {/* Hero */}
           <section className="text-white py-24 px-4 text-center" style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #3b0764 50%, #1a0a2e 100%)' }}>
             <div className="max-w-4xl mx-auto">
-              <img src="/angels-logo.png" alt="21 Angels Strong" className="h-56 w-auto mx-auto mb-6" />
+              <img src="/angels-logo.png" alt="21 Angels Strong - We Stand to Protect" className="h-64 w-auto mx-auto mb-6 rounded-xl shadow-2xl" />
               <span className="px-4 py-1 rounded-full text-sm font-semibold mb-6 inline-block" style={{ backgroundColor: 'rgba(123,45,139,0.4)', border: '1px solid #c084d4', color: '#e0b0f0' }}>
                 501(c)(3) Nonprofit Organization
               </span>
@@ -882,24 +908,99 @@ export default function StarsPrivateInvestigations() {
               <h2 className="text-4xl font-bold mb-4">Stand With 21 Angels Strong</h2>
               <p className="text-xl opacity-90 mb-4" style={{ color: '#c084d4' }}>Honor the 21 angels by helping protect the next generation.</p>
               <p className="text-lg opacity-80 mb-10">Your donation helps turn concern into action.</p>
-              <a href={STRIPE_DONATE_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-4 rounded-lg font-bold text-lg text-white transition shadow-lg hover:opacity-90 mb-6" style={{ backgroundColor: '#7B2D8B' }}>
+              <a href={STRIPE_DONATE_URL} target="_blank" rel="noopener noreferrer" className="inline-block px-12 py-4 rounded-lg font-bold text-lg text-white transition shadow-lg hover:opacity-90" style={{ backgroundColor: '#7B2D8B' }}>
                 Make a Donation Today
               </a>
-              <div className="mt-6">
-                <button onClick={() => navigateTo('home')} className="text-purple-300 hover:text-white underline text-sm transition">
-                  ← Return to Stars Private Investigations
-                </button>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="angels-contact" className="py-16 px-4 bg-white">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4" style={{ color: '#3b0764' }}>Get In Touch</h2>
+              <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Have questions about 21 Angels Strong, want to partner with us, request training support for your school or community, or explore volunteer opportunities? Reach out below.
+              </p>
+              <div className="grid md:grid-cols-2 gap-12">
+                {/* Contact Form */}
+                <div>
+                  <h3 className="text-xl font-bold mb-6" style={{ color: '#3b0764' }}>Send Us a Message</h3>
+                  {angelsStatus === 'success' && (
+                    <div className="bg-green-100 text-green-800 px-4 py-3 rounded mb-4">Message sent! We'll get back to you within 24-48 hours.</div>
+                  )}
+                  {angelsStatus === 'error' && (
+                    <div className="bg-red-100 text-red-800 px-4 py-3 rounded mb-4">Please fill in your Name and Email.</div>
+                  )}
+                  {angelsStatus === 'fail' && (
+                    <div className="bg-red-100 text-red-800 px-4 py-3 rounded mb-4">Something went wrong. Please email us directly at spitx06@gmail.com.</div>
+                  )}
+                  <div className="space-y-4">
+                    <input type="text" name="name" placeholder="Your Name *" value={angelsForm.name} onChange={handleAngelsFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black" />
+                    <input type="email" name="email" placeholder="Email Address *" value={angelsForm.email} onChange={handleAngelsFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black" />
+                    <input type="tel" name="phone" placeholder="Phone Number" value={angelsForm.phone} onChange={handleAngelsFormChange} className="w-full px-4 py-3 rounded border border-gray-300 text-black" />
+                    <textarea name="message" placeholder="Tell us how we can help — training requests, partnerships, volunteering, or general questions..." value={angelsForm.message} onChange={handleAngelsFormChange} rows="5" className="w-full px-4 py-3 rounded border border-gray-300 text-black" />
+                    <button onClick={handleAngelsFormSubmit} className="w-full py-3 rounded-lg font-bold text-white transition hover:opacity-90" style={{ backgroundColor: '#7B2D8B' }}>
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+
+                {/* Contact Info */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-bold mb-6" style={{ color: '#3b0764' }}>Contact Information</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <Phone className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#7B2D8B' }} />
+                        <div>
+                          <p className="font-semibold text-gray-800">Phone</p>
+                          <a href="tel:2106379061" className="text-gray-600 hover:underline">(210) 637-9061</a>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Mail className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#7B2D8B' }} />
+                        <div>
+                          <p className="font-semibold text-gray-800">Email</p>
+                          <a href="mailto:spitx06@gmail.com" className="text-gray-600 hover:underline">spitx06@gmail.com</a>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#7B2D8B' }} />
+                        <div>
+                          <p className="font-semibold text-gray-800">Mailing Address</p>
+                          <p className="text-gray-600">7461 Callaghan Rd, Ste 100<br />San Antonio, TX 78229</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-6 h-6 flex-shrink-0 mt-1" style={{ color: '#7B2D8B' }} />
+                        <div>
+                          <p className="font-semibold text-gray-800">Hours</p>
+                          <p className="text-gray-600">Monday – Sunday, 24/7 for urgent school safety inquiries</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-5 rounded-lg" style={{ backgroundColor: '#f5f0fa', borderLeft: '4px solid #7B2D8B' }}>
+                    <p className="font-semibold text-sm" style={{ color: '#3b0764' }}>21 Angels Strong</p>
+                    <p className="text-sm text-gray-600 mt-1">501(c)(3) Nonprofit Organization</p>
+                    <p className="text-sm text-gray-600 mt-1">www.21angelsstrong.org</p>
+                    <p className="text-xs text-gray-500 mt-3">Donations may be tax-deductible as allowed by law.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
           {/* Footer */}
-          <footer className="py-8 px-4 text-gray-400 text-center" style={{ backgroundColor: '#0a0014' }}>
-            <p className="text-sm">&copy; {new Date().getFullYear()} 21 Angels Strong. All rights reserved.</p>
-            <p className="text-xs mt-1 opacity-60">501(c)(3) Nonprofit Organization | Donations may be tax-deductible as allowed by law.</p>
-            <button onClick={() => navigateTo('home')} className="mt-3 text-xs hover:text-white underline transition">
-              starsprivatei.com
-            </button>
+          <footer className="py-10 px-4 text-gray-400 text-center" style={{ backgroundColor: '#0a0014' }}>
+            <div className="max-w-4xl mx-auto">
+              <img src="/angels-logo.png" alt="21 Angels Strong" className="h-16 w-auto mx-auto mb-4 opacity-90" />
+              <p className="text-sm text-white font-semibold">21 Angels Strong</p>
+              <p className="text-xs mt-1 opacity-70">7461 Callaghan Rd, Ste 100, San Antonio, TX 78229 | (210) 637-9061 | spitx06@gmail.com</p>
+              <p className="text-xs mt-3 opacity-60">&copy; {new Date().getFullYear()} 21 Angels Strong. All rights reserved.</p>
+              <p className="text-xs mt-1 opacity-50">501(c)(3) Nonprofit Organization | Donations may be tax-deductible as allowed by law.</p>
+              <p className="text-xs mt-4 opacity-40">In partnership with Stars Private Investigations, San Antonio, TX</p>
+            </div>
           </footer>
         </div>
       )}
