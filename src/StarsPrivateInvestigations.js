@@ -1749,7 +1749,7 @@ export default function StarsPrivateInvestigations() {
                     <input type="email" name="email" placeholder="Email Address *" value={formData.email} onChange={handleFormChange} className="w-full px-4 py-2 rounded text-black" />
                     <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleFormChange} className="w-full px-4 py-2 rounded text-black" />
                     <select name="service" value={formData.service} onChange={handleFormChange} className="w-full px-4 py-2 rounded text-black">
-                      <option value="">Select Service of Interest *</option>
+                      <option value="">Enroll in Training or Select Service of Interest *</option>
                       <option value="guards">Security Guards</option>
                       <option value="campus">Campus &amp; School Security</option>
                       <option value="protection">Protection Services</option>
