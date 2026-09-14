@@ -1734,7 +1734,7 @@ export default function StarsPrivateInvestigations() {
               <div className="grid md:grid-cols-2 gap-12">
                 {/* Contact Form */}
                 <div>
-                  <h3 className="text-xl font-bold mb-6">Request a Consultation</h3>
+                  <h3 className="text-xl font-bold mb-6">Enroll or Request a Consultation</h3>
                   {formStatus === 'success' && (
                     <div className="bg-green-100 text-green-800 px-4 py-3 rounded mb-4">Message sent! We'll contact you within 24 hours.</div>
                   )}
