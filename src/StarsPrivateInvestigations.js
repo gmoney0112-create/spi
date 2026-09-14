@@ -65,7 +65,7 @@ export default function StarsPrivateInvestigations() {
     if (page) setCurrentPage(page);
   }, [isAngelsDomain]);
   const [bannerDismissed, setBannerDismissed]   = useState(false);
-  const [formData, setFormData]                 = useState({ name: '', email: '', phone: '', service: '', message: '' });
+  const [formData, setFormData]                 = useState({ name: '', email: '', phone: '', service: '', trainingClass: '', message: '' });
   const [careerForm, setCareerForm]             = useState({ name: '', email: '', phone: '', position: '', experience: '', message: '' });
   const [formStatus, setFormStatus]             = useState('');
   const [careerStatus, setCareerStatus]         = useState('');
@@ -444,7 +444,7 @@ export default function StarsPrivateInvestigations() {
       });
       if (res.ok) {
         setFormStatus('success');
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: '', trainingClass: '', message: '' });
       } else {
         setFormStatus('fail');
       }
@@ -466,7 +466,7 @@ export default function StarsPrivateInvestigations() {
       });
       if (res.ok) {
         setFormStatus('success');
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: '', trainingClass: '', message: '' });
       } else {
         setFormStatus('fail');
       }
@@ -557,6 +557,7 @@ export default function StarsPrivateInvestigations() {
             <button onClick={() => navigateTo('about')} className="hover:text-yellow-400 transition">About</button>
             <button onClick={() => scrollToSection('contact')} className="hover:text-yellow-400 transition">Contact</button>
             <button onClick={() => navigateTo('21angels')} className="px-3 py-1 rounded font-semibold transition text-white" style={{ backgroundColor: '#7B2D8B' }}>21 Angels</button>
+            <a href="https://byrna.vercel.app" target="_blank" rel="noopener noreferrer" className="px-3 py-1 rounded font-semibold transition text-white" style={{ backgroundColor: '#B91C1C' }}>Byrna</a>
           </nav>
 
           <a href={`tel:2106379061`} className="hidden md:flex items-center gap-2 px-4 py-2 rounded" style={{ backgroundColor: '#B8860B' }}>
@@ -576,6 +577,7 @@ export default function StarsPrivateInvestigations() {
             <button onClick={() => navigateTo('about')} className="block w-full text-left hover:text-yellow-400">About</button>
             <button onClick={() => scrollToSection('contact')} className="block w-full text-left hover:text-yellow-400">Contact</button>
             <button onClick={() => navigateTo('21angels')} className="block w-full text-left font-semibold" style={{ color: '#c084d4' }}>21 Angels</button>
+            <a href="https://byrna.vercel.app" target="_blank" rel="noopener noreferrer" className="block w-full text-left font-semibold" style={{ color: '#f87171' }}>Byrna</a>
             <a href="tel:2106379061" className="block w-full text-left hover:text-yellow-400 font-semibold" style={{ color: '#B8860B' }}>(210) 637-9061</a>
           </div>
         )}
@@ -1758,6 +1760,14 @@ export default function StarsPrivateInvestigations() {
                       <option value="process">Process Serving</option>
                       <option value="training">Training &amp; Classes</option>
                     </select>
+                    {formData.service === 'training' && (
+                      <select name="trainingClass" value={formData.trainingClass} onChange={handleFormChange} className="w-full px-4 py-2 rounded text-black">
+                        <option value="">Select Specific Class *</option>
+                        {trainings.map((t, i) => (
+                          <option key={i} value={t}>{t}</option>
+                        ))}
+                      </select>
+                    )}
                     <textarea name="message" placeholder="Tell us about your security needs..." value={formData.message} onChange={handleFormChange} rows="4" className="w-full px-4 py-2 rounded text-black" />
                     <button onClick={handleFormSubmit} className="w-full text-slate-900 py-2 rounded font-semibold transition" style={{ backgroundColor: '#B8860B' }}>
                       Submit Inquiry
