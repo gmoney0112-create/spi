@@ -1558,7 +1558,13 @@ export default function StarsPrivateInvestigations() {
           <section id="training" className="py-16 px-4" style={{ backgroundColor: '#f5f3f0' }}>
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-4" style={{ color: '#001F3F' }}>Training &amp; Certifications</h2>
-              <p className="text-center text-gray-600 mb-12">Industry-leading courses for security professionals in Texas</p>
+              <p className="text-center text-gray-600 mb-10">Industry-leading courses for security professionals in Texas</p>
+              <div className="max-w-3xl mx-auto mb-12 rounded-lg overflow-hidden shadow-lg">
+                <video controls playsInline preload="metadata" className="w-full h-auto block" poster="/stars-logo.png">
+                  <source src="/videos/stars-training-class.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {trainings.map((training, idx) => (
                   <div key={idx} className="bg-white p-4 rounded-lg border-2 border-gray-200 flex items-start gap-3">
